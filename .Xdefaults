@@ -1,0 +1,22 @@
+URxvt*termname:        urxvt-256color
+urxvt*font: xft:Inconsolata for Powerline:size=12
+URxvt*scrollBar:       false
+URxvt*saveLines:       32767
+urxvt*background:       #000000
+urxvt*foreground:       #ffffff
+URxvt*cursorColor:     green
+URxvt*cursorBlink:     true
+URxvt*title:           rxvt-256color
+URxvt*tintColor:       #636363
+URxvt*shading:         99
+URxvt*transparent:     true
+URxvt*pastableTabs:    true
+URxvt*jumpScroll:      true
+URxvt*secondaryScroll: true
+URxvt*urgentOnBell:    true
+URxvt*dynamicColors: on
+
+URxvt*perl-lib:             /usr/lib/urxvt/perl/
+URxvt.perl-ext-common:  default,matcher
+URxvt.url-launcher:      /usr/bin/firefox
+URxvt.matcher.button:   1

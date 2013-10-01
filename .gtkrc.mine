@@ -1,0 +1,11 @@
+##################
+#      GTK       #
+##################
+
+gtk-theme-name = "Blackbird"
+
+##################
+#     ICONS      #
+##################
+
+gtk-icon-theme-name = "Faenza"
