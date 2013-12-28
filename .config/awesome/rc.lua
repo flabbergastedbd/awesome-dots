@@ -40,7 +40,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/themes/zenburn/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/wtf/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -48,7 +48,6 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 files = "pcmanfm"
 browser = "firefox"
-editor_gui = "geany"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -103,8 +102,8 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-    names = { "1:[www]", "2:[space]", "3:[term]", "4:[skype]", "5:[vbox]", 6, 7, 8, 9 },
-    layout = { layouts[10], layouts[2], layouts[3], layouts[2], layouts[10], layouts[6], layouts[7], layouts[8], layouts[9] }
+    names = { " www ", " code ", " term ", " im ", " vbox " },
+    layout = { layouts[10], layouts[2], layouts[6], layouts[2], layouts[10] }
     }
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -126,7 +125,7 @@ myactions = {
     { "Shutdown", "systemctl poweroff" }
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu },
                                     { "Terminal", terminal },
                                     { "Browser", browser },
                                     { "Files", files },
@@ -134,7 +133,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+mylauncher = awful.widget.launcher({ image = beautiful.arch_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
@@ -143,46 +142,42 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock()
+clockicon = wibox.widget.imagebox(beautiful.widget_clock)
+mytextclock = awful.widget.textclock("<span color='#7788AF'>%a %b %d, %H:%M</span>")
 
 -- Initialize widget
 memwidget = wibox.widget.textbox()
 memicon = wibox.widget.imagebox()
-memicon:set_image(awful.util.getdir("config") .. "/themes/zenburn/widgets/ram.png")
+memicon:set_image(beautiful.widget_mem)
 -- Register widget
-vicious.register(memwidget, vicious.widgets.mem, "[$2/$3]MB", 1)
+vicious.register(memwidget, vicious.widgets.mem, "<span color='#E0DA37'>$2 M</span>", 1)
 
 -- Initialize widget
 cpuwidget = wibox.widget.textbox()
 cpuicon = wibox.widget.imagebox()
-cpuicon:set_image(awful.util.getdir("config") .. "/themes/zenburn/widgets/cpu.png")
+cpuicon:set_image(beautiful.widget_cpu)
 -- Register widget
-vicious.register(cpuwidget, vicious.widgets.cpu, "$2% $3% $4% $5%", 1)
+vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='#E33A6E'>$2% $3% $4% $5%</span>", 1)
 
 -- Initialize widget
 tempwidget = wibox.widget.textbox()
 tempicon = wibox.widget.imagebox()
-tempicon:set_image(awful.util.getdir("config") .. "/themes/zenburn/widgets/temp.png")
+tempicon:set_image(beautiful.widget_temp)
 -- Register widget
-vicious.register(tempwidget, vicious.widgets.thermal, "$1", 1, "thermal_zone0")
-
--- Initialize widget
-oswidget = wibox.widget.textbox()
--- Register widget
-vicious.register(oswidget, vicious.widgets.os, "Kernel : $2", 1, "thermal_zone0")
+vicious.register(tempwidget, vicious.widgets.thermal, "<span color='#F1AF5F'>$1</span>", 1, "thermal_zone0")
 
 -- Initialize widget
 uptimewidget = wibox.widget.textbox()
 uptimeicon = wibox.widget.imagebox()
-uptimeicon:set_image(awful.util.getdir("config") .. "/themes/zenburn/widgets/fs2.png")
+uptimeicon:set_image(beautiful.widget_uptime)
 -- Register widget
-vicious.register(uptimewidget, vicious.widgets.uptime, "$2:$3", 60)
+vicious.register(uptimewidget, vicious.widgets.uptime, "<span color='#80D9D8'>$2:$3</span>", 60)
 
 -- Create a batwidget
 -- Initialize widget
 batwidget = wibox.widget.textbox()
 baticon = wibox.widget.imagebox()
-baticon:set_image(awful.util.getdir("config") .. "/themes/zenburn/widgets/bat.png")
+baticon:set_image(beautiful.widget_batt)
 -- Register widget
 vicious.register(batwidget, vicious.widgets.bat, "$2% $1 $3", 60, "BAT0")
 
@@ -254,48 +249,16 @@ for s = 1, screen.count() do
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
-    -- Create a tasklist widget
-    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
-
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
+
+    -- Create a promptbox for each screen
+    mypromptbox[s] = awful.widget.prompt()
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
-
-    -- Widgets that are aligned to the right
-    local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(spacewidget)
-    right_layout:add(mytextclock)
-    right_layout:add(mylayoutbox[s])
-
-    -- Now bring it all together (with the tasklist in the middle)
-    local layout = wibox.layout.align.horizontal()
-    layout:set_left(left_layout)
-    layout:set_middle(mytasklist[s])
-    layout:set_right(right_layout)
-
-    mywibox[s]:set_widget(layout)
-end
--- }}}
-
--- Create a wibox for each screen and add it [ Bottom Panel ]
-mywibox = {}
-mypromptbox = {}
-
-for s = 1, screen.count() do
-    -- Create a promptbox for each screen
-    mypromptbox[s] = awful.widget.prompt()
-    -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "bottom", screen = s })
-
-    -- Widgets that are aligned to the left
-    local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(oswidget)
-    left_layout:add(separatorwidget)
     left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
@@ -315,10 +278,41 @@ for s = 1, screen.count() do
     right_layout:add(separatorwidget)
     right_layout:add(uptimeicon)
     right_layout:add(uptimewidget)
-    
+    right_layout:add(separatorwidget)
+    right_layout:add(mylayoutbox[s])
+
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
+    layout:set_right(right_layout)
+
+    mywibox[s]:set_widget(layout)
+end
+-- }}}
+
+-- Create a wibox for each screen and add it [ Bottom Panel ]
+mywibox = {}
+
+for s = 1, screen.count() do
+
+    -- Create the wibox
+    mywibox[s] = awful.wibox({ position = "bottom", screen = s })
+
+    -- Create a tasklist widget
+    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
+
+    -- Widgets that are aligned to the right
+    local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(spacewidget)
+    if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(spacewidget)
+    right_layout:add(clockicon)
+    right_layout:add(mytextclock)
+    right_layout:add(spacewidget)
+
+    -- Now bring it all together (with the tasklist in the middle)
+    local layout = wibox.layout.align.horizontal()
+    layout:set_middle(mytasklist[s])
     layout:set_right(right_layout)
 
     mywibox[s]:set_widget(layout)
@@ -414,7 +408,7 @@ clientkeys = awful.util.table.join(
             c.maximized_vertical   = not c.maximized_vertical
         end),
     -- bind PrintScrn to capture a screen
-    awful.key({ }, "Print", function () awful.util.spawn("scrot -q 100 -e 'mv $f ~/Pictures/screenshots/ 2>/dev/null'") end)
+    awful.key({ }, "Print", function () awful.util.spawn("scrot -q 75 -e 'mv $f ~/Pictures/screenshots/ 2>/dev/null'") end)
 )
 
 -- Bind all key numbers to tags.

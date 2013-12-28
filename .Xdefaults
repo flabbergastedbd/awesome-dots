@@ -1,5 +1,5 @@
 URxvt*termname:        urxvt-256color
-urxvt*font: xft:Inconsolata for Powerline:size=12
+urxvt*font: xft:Inconsolata for Powerline:size=11
 URxvt*scrollBar:       false
 URxvt*saveLines:       32767
 urxvt*background:       #000000
