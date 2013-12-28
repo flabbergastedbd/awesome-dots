@@ -4,14 +4,16 @@ AWESOME-DOTS
 A collection of all my config files so that I dont end up writing them all over 
 again :P
 
-Window Manager - Awesome
-Theme          - wtf (Included)
-Editor         - Vim
-Terminal       - rxvt-unicode
-IRC Client     - irssi
-GTK Theme      - Blackbird
-Icon Theme     - Faenza
-Cursor Theme   - Ecliz
+* Window Manager - Awesome
+* Theme          - wtf (Included)
+* Editor         - Vim
+* Terminal       - rxvt-unicode
+* IRC Client     - irssi
+* GTK Theme      - Blackbird
+* Icon Theme     - Faenza
+* Cursor Theme   - Ecliz
+* Music Player   - Cmus
+* Video Player   - Mplayer
 
 SCREENSHOTS
 -----------
