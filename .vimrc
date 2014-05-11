@@ -2,6 +2,8 @@ syntax on
 set number
 set nofoldenable    " disable folding
 set nowrap
+set modelines=1
+set sidescroll=1    " horizontal scrolling by character
 
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -13,15 +15,16 @@ call vundle#rc()
 " original repos on github
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'scrooloose/nerdtree'
+Bundle 'nvie/vim-flake8'
 " Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
 " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
 " ...
 
 filetype plugin indent on     " required! 
@@ -42,3 +45,8 @@ set laststatus=2
 let g:airline_powerline_fonts=1
 set ttimeoutlen=50
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='powerlineish'
+
+" Molokai theme
+colorscheme molokai
+let g:rehash256=1

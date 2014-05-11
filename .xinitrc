@@ -14,5 +14,5 @@ fi
 # exec gnome-session
 # exec startkde
 # exec startxfce4
-exec awesome
+exec i3
 # ...or the Window Manager of your choice
