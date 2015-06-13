@@ -1,5 +1,7 @@
 [user]
-	email = tunnelshade@gmail.com
 	name = tunnelshade
+	email = tunnelshade@gmail.com
+[core]
+	editor = vim
 [push]
-	default = matching
+	default = simple
