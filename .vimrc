@@ -22,9 +22,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 
-" Autocompletion engine
-" Plugin 'ervandew/supertab'
+" Completing engine
 Plugin 'Valloric/YouCompleteMe'
+
+" Snippets are the love of my life
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
@@ -35,9 +36,6 @@ Plugin 'kien/ctrlp.vim'
 " PEP-8 compliance help
 Plugin 'nvie/vim-flake8'
 " Plugin 'klen/python-mode'
-
-" Golang usage
-Plugin 'fatih/vim-go'
 
 " DVCS : Git, gitgutter for showing the changes beside line numbers
 Plugin 'tpope/vim-fugitive'
@@ -70,8 +68,12 @@ set hlsearch incsearch ignorecase " highlight search, incremental search and ign
 " double escape for removing search highlights
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
-" python hacks
+" File specific hacks
 autocmd Filetype python set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype htmldjango set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype html set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Backup locations
@@ -86,11 +88,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" keymaps
-
-" ycm
-let g:ycm_key_list_select_completion=['<Tab>', '<Down>']
-let g:ycm_key_list_previous_completion=['<S-Tab>', '<Up>']
-
-" UltiSnips stuff
-let g:UltiSnipsExpandTrigger="<c-j>"
+"" Ultisnips
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
