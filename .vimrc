@@ -20,6 +20,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Airline instead of powerline, simple yet great
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
 
 " Completing engine
