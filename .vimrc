@@ -60,6 +60,7 @@ let g:rehash256=1
 " Colorscheme
 let g:molokai_original=1
 colorscheme molokai
+hi Normal ctermbg=None
 
 " OSX hacks
 set backspace=start,eol,indent
@@ -93,3 +94,6 @@ nnoremap <C-H> <C-W><C-H>
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"" Gui Fonts
+"set guifont=Font\ Awesome\ 8

@@ -1,0 +1,25 @@
+[global_config]
+  borderless = True
+  tab_position = hidden
+  window_state = hidden
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.88
+    background_image = None
+    background_type = transparent
+    custom_command = TERM=xterm-256color bash -l
+    font = Hack 11
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_custom_command = True
