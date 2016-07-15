@@ -61,6 +61,7 @@ let g:rehash256=1
 let g:molokai_original=1
 colorscheme molokai
 hi Normal ctermbg=None
+hi LineNr ctermbg=None
 
 " OSX hacks
 set backspace=start,eol,indent
