@@ -1,5 +1,6 @@
 [global_config]
   borderless = True
+  geometry_hinting = False
   tab_position = hidden
   window_state = hidden
 [keybindings]
@@ -14,12 +15,13 @@
 [plugins]
 [profiles]
   [[default]]
-    background_darkness = 0.88
+    background_darkness = 0.6
     background_image = None
     background_type = transparent
-    custom_command = TERM=xterm-256color bash -l
-    font = Hack 11
+    custom_command = TERM=xterm-256color fish -l
+    font = Hack 9
     scrollback_infinite = True
     scrollbar_position = hidden
     show_titlebar = False
     use_custom_command = True
+    use_system_font = False

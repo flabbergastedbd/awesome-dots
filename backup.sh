@@ -11,3 +11,7 @@ cp -r ~/.local/share/fonts/* .local/share/fonts/.
 
 # .i3 backup
 cp -r ~/.i3/* .i3/.
+
+# Xresources
+cp ~/.Xresources .
+cp ~/.xinitrc .

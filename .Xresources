@@ -1,0 +1,13 @@
+! ------------------------------------------------------------------------------
+! ! ROFI Color theme
+! ! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: argb:63000000, argb:0000000, argb:0000000
+rofi.color-active: argb:f000000, #ffffff, argb:10000000, argb:ac586e75, #eee8d5
+rofi.color-normal: argb:f000000, #268bd2, argb:10000000, argb:8d268bd2, #fcfcfb
+rofi.color-urgent: argb:f000000, #dc322f, argb:48eee8d5, argb:a6dc322f, #fdf6e3
+rofi.lines: 5
+rofi.bw: 0
+rofi.eh: 2
+rofi.width: 50
+rofi.fixed-num-lines: 5
