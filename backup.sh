@@ -6,6 +6,10 @@ cp -r ~/.vim/colors/* .vim/colors/.
 cp ~/.config/compton.conf .config/.
 cp ~/.config/terminator/config .config/terminator/.
 
+# fish backup
+cp -r ~/.config/fish/config.fish .config/fish/.
+cp -r ~/.config/fish/functions/* .config/fish/functions/.
+
 # .local fonts
 cp -r ~/.local/share/fonts/* .local/share/fonts/.
 

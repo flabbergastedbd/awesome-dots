@@ -203,11 +203,11 @@ client.background $transparent
 exec --no-startup-id nm-applet
 exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpaper.jpg
 # exec --no-startup-id compton --opacity-rule '60:window_type = "dock" && class_g = "i3bar"' -b
-exec --no-startup-id compton -b --config ~/.config/compton.conf
+exec --no-startup-id compton -b # --config ~/.config/compton.conf
 
 # Custom KeyBinds
 bindsym Control+$mod+l exec bash ~/.i3/i3lock.sh
-bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
+bindsym $mod+p exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
 
 # Gaps
 # for_window [class="^.*"] border pixel 2
