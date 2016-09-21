@@ -19,3 +19,6 @@ cp -r ~/.i3/* .i3/.
 # Xresources
 cp ~/.Xresources .
 cp ~/.xinitrc .
+
+# Mplayer
+cp -r ~/.mplayer .

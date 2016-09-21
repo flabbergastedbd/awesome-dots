@@ -1,0 +1,5 @@
+# Write your default config options here!
+softvol="yes"
+softvol-max=300
+
+
