@@ -19,7 +19,7 @@
     background_image = None
     background_type = transparent
     custom_command = TERM=xterm-256color fish -l
-    font = Hack 9
+    font = Source Code Pro for Powerline 9
     scrollback_infinite = True
     scrollbar_position = hidden
     show_titlebar = False

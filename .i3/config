@@ -206,14 +206,14 @@ exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpaper.jpg
 exec --no-startup-id compton -b # --config ~/.config/compton.conf
 
 # Custom KeyBinds
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) Shutdown
+set $mode_system System (l) lock, (e) exit, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) Shutdown
 mode "$mode_system" {
     bindsym l exec bash ~/.i3/i3lock.sh, mode "default"
-    bindsym e exec i3exit logout, mode "default"
+    bindsym e exec i3-msg exit, mode "default"
     bindsym s exec i3exit suspend, mode "default"
     bindsym h exec i3exit hibernate, mode "default"
-    bindsym r exec i3exit reboot, mode "default"
-    bindsym Shift+s exec i3exit shutdown, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Shift+s exec systemctl poweroff, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
