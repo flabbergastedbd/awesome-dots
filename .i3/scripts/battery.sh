@@ -29,15 +29,15 @@ BAT_P=$(echo $OUT | awk '{ print $4 }' | grep -o '[0-9]*')
 BAT_R=$(echo $OUT | awk '{ print $5 }' | cut -d ':' -f 1,2)
 
 if [[ $BAT_S == "Discharging" ]]; then
-	if [[ $BAT_P -ge 80 ]] && [[ $BAT_P -lt 100 ]]; then
+	if [[ $BAT_P -ge 80 ]]; then
 		printf "<span color='#005900'>"
-	elif [[ $BAT_P -ge 60 ]] && [[ $BAT_P -lt 80 ]]; then
+	elif [[ $BAT_P -ge 60 ]]; then
 		printf "<span color='#A8FF00'>"
-	elif [[ $BAT_P -ge 40 ]] && [[ $BAT_P -lt 60 ]]; then
+	elif [[ $BAT_P -ge 40 ]]; then
 		printf "<span color='#FFF600'>"
-	elif [[ $BAT_P -ge 20 ]] && [[ $BAT_P -lt 40 ]]; then
+	elif [[ $BAT_P -ge 20 ]]; then
 		printf "<span color='#FFAE00'>"
-	elif [[ $BAT_P -ge 0 ]] && [[ $BAT_P -lt 20 ]]; then
+	else
 		printf "<span color='#FF0000'>"
 	fi
 else
