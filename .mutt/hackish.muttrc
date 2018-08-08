@@ -1,0 +1,50 @@
+# general ------------ foreground ---- background -----------------------------
+color error		color231	color212
+color indicator		color32		color232
+color markers		color240	color232
+color message		color255		color232
+color normal		color255	color232
+color prompt		color255	        color232
+color search		color240		color232
+color status 		color240		color233
+color tilde		color240	color232
+color tree		color240		color232
+
+# message index ------ foreground ---- background -----------------------------
+color index 		color240        color232        ~A # All messages
+color index		red     	color232 	~D # deleted messages
+color index		color84		color232 	~F # flagged messages
+color index		color215	color232 	~T # tagged messages
+color index		color255	color232	"~v~(!~N)" # messages part of a collapsed thread
+color index		color255	color232 	~N # new messages
+
+color sidebar_highlight color232 	color32
+color sidebar_indicator color32 	color232
+color sidebar_ordinary  color240		color232
+color sidebar_new       color240         color232
+
+mono  index 		bold 				~N
+mono  sidebar_new   	bold
+
+# message headers ---- foreground ---- background -----------------------------
+color hdrdefault	color240	color232
+color header		color255	color232		^Subject:.*
+
+# message body ------- foreground ---- background -----------------------------
+color attachment	color30		color232
+color body		color32		color232		[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses
+color body		color32		color232		(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs
+color body		color255	color232		(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text
+color body		color231	color232		(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text
+color body		color231	color232		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text
+color body 		color240	color232 	(^gpg:.*$)
+color body 		color28 	color232 	(^gpg:[[:space:]]Good.*$)
+color body 		color160 	color232 	(^gpg:[[:space:]]BAD.*$)
+color quoted		color61		color232
+color quoted1		color117	color232
+color quoted2		color84		color232
+color quoted3		color215	color232
+color quoted4		color212	color232
+color signature		color240	color232
+
+color progress		color232 	color32

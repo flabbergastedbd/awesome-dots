@@ -1,0 +1,27 @@
+[global_config]
+  borderless = True
+  geometry_hinting = False
+  tab_position = hidden
+  window_state = hidden
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.8
+    background_image = None
+    background_type = transparent
+    custom_command = TERM=xterm-256color fish -l
+    font = Source Code Pro for Powerline 9
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_custom_command = True
+    use_system_font = False

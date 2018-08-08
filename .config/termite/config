@@ -1,0 +1,53 @@
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+search_wrap = true
+allow_bold = true
+urgent_on_bell = true
+clickable_url = true
+font = Fira Mono for Powerline 11
+scrollback_lines = 10000
+
+cursor_blink = system
+cursor_shape = block
+
+[colors]
+
+# special
+foreground      = #ffffff
+foreground_bold = #ffffff
+cursor          = #ffffff
+background      = rgba(08, 08, 08)
+
+# black
+color0  = #1e1e1e
+color8  = #d8d8d8
+
+# red
+color1  = #be0f17
+color9  = #f73028
+
+# green
+color2  = #868715
+color10 = #aab01e
+
+# yellow
+color3  = #cc881a
+color11 = #f7b125
+
+# blue
+color4  = #377375
+color12 = #719586
+
+# magenta
+color5  = #a04b73
+color13 = #c77089
+
+# cyan
+color6  = #578e57
+color14 = #7db669
+
+# white
+color7  = #978771
+color15 = #e6d4a3
+

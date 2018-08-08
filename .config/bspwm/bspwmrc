@@ -1,0 +1,42 @@
+#! /usr/bin/bash
+
+# Workaround for: https://github.com/baskerville/bspwm/issues/52
+wmname LG3D
+
+# Fix monitors
+bash ~/.screenlayout/default.sh
+
+sxhkd &
+compton -b
+
+# https://wiki.archlinux.org/index.php/GNOME/Keyring
+# eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+# export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+
+# Wallpaper and finally the status bar
+feh --bg-fill ~/Pictures/wallpaper.jpg
+yabar &
+
+
+bspc config border_width        1
+bspc config window_gap          7
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config click_to_focus       true
+bspc config focus_by_distance    true
+bspc config history_aware_focus  true
+bspc config focus_follows_pointer true
+bspc config center_pseudo_tiled  true
+bspc config focused_border_color \#444444
+bspc config normal_border_color \#080808
+
+bspc config persistent_monitors true
+
+# bspc monitor -d             7 8 9 0
+bspc monitor -d 1
+bspc monitor primary -d 2 3 4 5 6 7
+
+# mpd
+# mpd
