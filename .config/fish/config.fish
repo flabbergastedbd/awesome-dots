@@ -29,9 +29,17 @@ alias V="deactivate"
 # Custom watch
 function watch
 	while true
-		clear
-		eval $argv[2..-1]
+ 		clear
+ 		eval $argv[2..-1]
  		sleep $argv[1]
+ 	end
+end
+
+function is_tmux
+	if set -q TMUX
+		return 0
+	else
+		return 1
 	end
 end
 
@@ -48,6 +56,8 @@ function setup_tmux
 	tmux new-window -t $SESSION:3 -n 'tasks'
 	setup_taskwarrior
 
+	tmux new-window -t $SESSION:3 -n 'news'
+	setup_news
 
 	# Set default window
 	tmux select-window -t $SESSION:1
@@ -76,4 +86,27 @@ function setup_taskwarrior
 	tmux select-pane -t 4
 	tmux send-keys "watch 300 task calendar" C-m
 	tmux select-pane -t 5
+end
+
+function setup_news
+	# Split pane vertically first
+	tmux split-window -h -p 50
+	# Select top pane and split it horizontally
+	tmux select-pane -t 1
+	tmux send-keys "watch 300 senjutsu hn -tnb -s 5" C-m
+	tmux select-pane -t 2
+end
+
+function setup_jira
+	# Split pane vertically first
+	tmux split-window -v -p 60
+	# Select top pane and split it horizontally
+	tmux select-pane -t 1
+	tmux split-window -h -p 50
+	tmux select-pane -t 1
+	tmux send-keys "watch 300 senjutsu jira -d sprint_tasks" C-m
+	tmux select-pane -t 2
+	tmux send-keys "watch 300 senjutsu jira -d bugs" C-m
+	# Switch to pane 1
+	tmux select-pane -t 3
 end
