@@ -12,11 +12,11 @@ color tree		color240		color232
 
 # message index ------ foreground ---- background -----------------------------
 color index 		color240        color232        ~A # All messages
-color index		red     	color232 	~D # deleted messages
-color index		color84		color232 	~F # flagged messages
-color index		color215	color232 	~T # tagged messages
-color index		color255	color232	"~v~(!~N)" # messages part of a collapsed thread
 color index		color255	color232 	~N # new messages
+color index		color255	color232	"~v~(!~N)" # messages part of a collapsed thread
+color index		color84		color232 	~F # flagged messages
+color index		red     	color232 	~D # deleted messages
+color index		blue     	color232 	~T # deleted messages
 
 color sidebar_highlight color232 	color32
 color sidebar_indicator color32 	color232
