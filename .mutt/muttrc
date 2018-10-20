@@ -4,10 +4,11 @@ set charset = "utf-8"
 set realname = "Bharadwaj Machiraju"
 set signature = "~/.mutt/signature"
 set sig_on_top = yes
+set mailcap_path = ~/.mutt/mailcap
 
 # Email
-# source ~/.mutt/mail.muttrc
-source ~/.mutt/gmailrc
+source ~/.mutt/mail.muttrc
+# source ~/.mutt/gmailrc
 unset mark_old
 
 # Prevent recording of sent
