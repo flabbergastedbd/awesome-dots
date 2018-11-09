@@ -80,12 +80,8 @@ function setup_taskwarrior
 	tmux select-pane -t 3
 	tmux split-window -v -p 55
 	tmux select-pane -t 3
-	tmux split-window -h -p 33
-	tmux select-pane -t 3
-	tmux send-keys "watch 300 task ghistory" C-m
-	tmux select-pane -t 4
 	tmux send-keys "watch 300 task calendar" C-m
-	tmux select-pane -t 5
+	tmux select-pane -t 4
 end
 
 function setup_news
