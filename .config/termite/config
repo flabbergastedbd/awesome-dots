@@ -5,7 +5,7 @@ search_wrap = true
 allow_bold = true
 urgent_on_bell = true
 clickable_url = true
-font = Fira Mono for Powerline 11
+font = Fira Mono for Powerline 13
 scrollback_lines = 10000
 
 cursor_blink = system
