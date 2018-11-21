@@ -129,9 +129,5 @@ let g:ale_lint_on_text_changed=0
 
 " netrw
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
-augroup ProjectDrawer
-	autocmd!
-	autocmd VimEnter * :Vexplore
-augroup END
