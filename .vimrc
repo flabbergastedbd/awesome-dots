@@ -37,6 +37,8 @@ Plugin 'bling/vim-bufferline'
 
 Plugin 'ervandew/supertab'
 
+Plugin 'fatih/vim-go'
+
 " Completing engine
 Plugin 'Valloric/YouCompleteMe'
 
@@ -52,6 +54,8 @@ Plugin 'nvie/vim-flake8'
 " DVCS : Git, gitgutter for showing the changes beside line numbers
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+
+Plugin 'majutsushi/tagbar'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -122,3 +126,8 @@ highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_lint_on_save=1  " Run lint only on save
 let g:ale_lint_on_text_changed=0
+
+" netrw
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 25
