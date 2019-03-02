@@ -7,8 +7,7 @@ set sig_on_top = yes
 set mailcap_path = ~/.mutt/mailcap
 
 # Email
-source ~/.mutt/mail.muttrc
-# source ~/.mutt/gmailrc
+source ~/.mutt/jugadu.muttrc
 unset mark_old
 
 # Prevent recording of sent
@@ -40,7 +39,7 @@ unignore From To Reply-To Cc Bcc Subject Date Organization X-Label X-Mailer User
 set strict_threads = yes
 
 # GPG
-source ~/.mutt/gpg.rc
+source ~/.mutt/gpg.muttrc
 set pgp_use_gpg_agent = yes
 set pgp_timeout = 3600
 set pgp_self_encrypt = yes
@@ -48,7 +47,8 @@ set crypt_autosign = yes
 set crypt_replyencrypt = yes
 
 # Theme
-source ~/.mutt/hackish.muttrc
+# source ~/.mutt/hackish.muttrc
+source ~/.mutt/solarized.muttrc
 
 # Pager
 set reflow_text
@@ -93,5 +93,3 @@ push <first-entry>
 macro compose K "| pandoc -t html -o ~/.neomutt-alternative.html<enter>\
 <attach-file>~/.neomutt-alternative.html<enter>\
 <tag-entry><previous-entry><tag-entry><group-alternatives>"
-
-# Notmuch
