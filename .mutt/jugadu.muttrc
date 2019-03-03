@@ -18,4 +18,5 @@ set from=$imap_user
 set smtp_url = smtp://$imap_user@smtp.migadu.com:587/
 
 # PGP
-set pgp_sign_as = AA04359C
+set pgp_use_gpg_agent = yes
+set pgp_default_key = AA04359C1BB0646036FC41F6173A1026440933CA
