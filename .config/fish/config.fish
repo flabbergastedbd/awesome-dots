@@ -5,12 +5,30 @@ set fish_greeting "Hey, do you see something fishy?"
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
+set -gx TERM "screen-256color"
+
+# osx fix
+if test -d "/usr/local/opt/coreutils/libexec/gnubin"
+	set -gx PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
+end
+
 # Golang settings
 set -x GOPATH $HOME/workspace/golang
 set -gx PATH $PATH $GOPATH/bin
 
+# Python
+# I cannot tell how much I hate this cached shit
+set -gx PYTHONDONTWRITEBYTECODE true
+
 # Virtualenv disable prompt
 # set -x VIRTUAL_ENV_DISABLE_PROMPT "TRUE"
+
+# Alias
+alias ls="exa"
+alias lt="exa --tree"
+alias ll="ls -l"
+
+alias fd="fzf-cd-widget"
 
 # TaskWarrior Aliases
 alias in="task add +in"
@@ -97,12 +115,21 @@ function setup_jira
 	# Split pane vertically first
 	tmux split-window -v -p 60
 	# Select top pane and split it horizontally
-	tmux select-pane -t 1
-	tmux split-window -h -p 50
-	tmux select-pane -t 1
-	tmux send-keys "watch 300 senjutsu jira -d sprint_tasks" C-m
 	tmux select-pane -t 2
-	tmux send-keys "watch 300 senjutsu jira -d bugs" C-m
+	tmux split-window -v -p 60
+	tmux select-pane -t 1
+	tmux send-keys "watch 300 senjutsu jira -d open_sprint_tasks" C-m
+	tmux select-pane -t 2
+	tmux send-keys "watch 300 senjutsu jira -d pending_bug_tasks" C-m
 	# Switch to pane 1
 	tmux select-pane -t 3
+	tmux send-keys "watch 300 senjutsu jira -d closed_sprint_tasks" C-m
+end
+
+function generate_image
+	if test (count $argv) -lt 3
+		echo "Usage: <command> widthxheigth fffffff filename"
+	else
+		convert -size $argv[1] xc:#$argv[2] $argv[3]
+	end
 end
