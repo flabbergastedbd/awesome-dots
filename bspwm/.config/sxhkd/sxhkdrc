@@ -1,0 +1,86 @@
+# bspc bindings
+# Close under focus node
+super + shift + q
+	bspc node -c
+
+# Switch focus or current node to that workspace
+super + {_, shift + } {1-9, 0}
+	bspc {desktop -f, node -d} '^{1-9,10}'
+
+# Switch focus or current desktop to that monitor
+super + {_, shift + } {Left,Right,Up,Down}
+	bspc {monitor -f, desktop -m} '{west,east,north,south}'
+
+# Layouts
+super + {f,w,e}
+	bspc node -t {fullscreen,floating,tiled}
+
+# Node swap
+super + {_,shift +} {h,j,k,l}
+	bspc node {-f,-s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+    bspc node -f @{parent,brother,first,second}
+
+# Resize
+## expand the tiled space in the given direction
+super + alt + {h,j,k,l}
+	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+
+## contract the tiled space in the given direction
+super + alt + shift + {h,j,k,l}
+	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# Empty Node
+# insert receptacle, or clear receptacles on current desktop
+super + {_,shift + }space
+    insert={true,false}; \
+    $insert && bspc node -i || \
+    for win in `bspc query -m focused -N -n .leaf.!window`; do bspc node $win -k ; done;
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+
+# Launch terminal emulator
+super + Return
+	termite -e /usr/bin/fish
+
+# Launcher
+super + d
+	rofi -show run -font "Monospace Bold 16" -m -1 -fullscreen -padding 300 -hide-scrollbar
+
+
+# Functional key bindings
+XF86Audio{Stop,Prev,Next,Play}
+	mpc {stop,prev,next,toggle}
+
+XF86MonBrightness{Up,Down}
+	xbacklight {-inc 10,-dec 10}
+
+XF86Audio{Raise,Lower}Volume
+	amixer sset Master {5%+,5%-}
+
+XF86AudioMute
+	amixer sset Master toggle
+
+# Lock
+super + shift + e; {l,shift+s,r}
+	bash ~/.config/scripts/actions.sh {lock,shutdown,reboot}
+
+# Reload sxhkd
+super + shift + r
+	pkill -USR1 -x sxhkd
+
+Print
+	scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/'

@@ -1,7 +1,0 @@
-[user]
-	name = tunnelshade
-	email = tunnelshade@gmail.com
-[core]
-	editor = vim
-[push]
-	default = simple

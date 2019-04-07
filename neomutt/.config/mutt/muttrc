@@ -1,0 +1,95 @@
+# vim: set syntax=neomuttrc
+set editor = "vim"
+set charset = "utf-8"
+set realname = "Bharadwaj Machiraju"
+set signature = "~/.config/mutt/signature"
+set sig_on_top = yes
+set mailcap_path = ~/.config/mutt/mailcap
+
+# Email
+source ~/.config/mutt/jugadu.muttrc
+unset mark_old
+
+# Prevent recording of sent
+# unset record
+set status_format = "-%r-{%V}-: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+
+# Index
+set sort = "threads"
+set sort_aux = 'reverse-last-date-received'
+set sort_browser = "date"
+# set index_format = "%4C %Z %[!%d %b]    %-20.20n    %?X?%X📎&   ? %s %?E?(%E)&    ?"
+set index_format = "%4C %Z %[!%d %b]    %-20.20n    %s %?E?(%E)&    ?"
+
+
+# Sidebar
+set sidebar_visible = "yes"
+set sidebar_width = 20
+set sidebar_short_path = no
+set sidebar_delim_chars = '/.'
+set sidebar_indent_string = '  '
+set sidebar_format = "%B%?F? (%F)?%* %?N? [%N]?"
+set mail_check_stats
+
+# Header
+ignore *
+unignore From To Reply-To Cc Bcc Subject Date Organization X-Label X-Mailer User-Agent
+
+# Threads
+set strict_threads = yes
+
+# GPG
+source ~/.config/mutt/gpg.muttrc
+set pgp_use_gpg_agent = yes
+set pgp_timeout = 3600
+set pgp_self_encrypt = yes
+set crypt_autosign = yes
+set crypt_replyencrypt = yes
+
+# Theme
+# source ~/.config/mutt/hackish.muttrc
+source ~/.config/mutt/solarized.muttrc
+
+# Pager
+set reflow_text
+set reflow_space_quotes
+set pager_index_lines = 10
+set smart_wrap
+set skip_quoted_offset = 5
+
+# PFA
+set abort_noattach = ask-yes
+# Search for the following regular expression in the body of the email
+set abort_noattach_regex = "\\<(attach|attached|pfa|attachments?)\\>"
+
+# Hooks
+# folder-hook . "exec collapse-all"
+
+# Bindings
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Cl sidebar-open
+
+bind index ^ imap-fetch-mail
+bind index l display-message
+bind index g noop
+bind index gg first-entry
+bind index G last-entry
+bind index - collapse-thread
+bind index / limit
+
+bind pager h exit
+bind pager g noop
+bind pager gg top
+bind pager G bottom
+bind pager J next-line
+bind pager K previous-line
+
+# Final commands
+push <collapse-all>
+push <first-entry>
+
+# Compose
+macro compose K "| pandoc -t html -o ~/.neomutt-alternative.html<enter>\
+<attach-file>~/.neomutt-alternative.html<enter>\
+<tag-entry><previous-entry><tag-entry><group-alternatives>"
