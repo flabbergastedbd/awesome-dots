@@ -1,0 +1,5 @@
+# Show comments at right of disassembly if they fit in screen
+e asm.cmt.right=true
+
+# Use UTF-8 to show cool arrows that do not look like crap :)
+e scr.utf8 = true

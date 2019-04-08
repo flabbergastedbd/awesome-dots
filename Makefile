@@ -9,6 +9,7 @@ common:
 	stow -t ~/ python
 	stow -t ~/ neomutt
 	stow -t ~/.weechat weechat
+	stow -t ~/.config/radare2 radare2
 
 linux:
 	stow -t ~/ bspwm
