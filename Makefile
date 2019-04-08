@@ -5,6 +5,7 @@ common:
 	stow -t ~/ vim
 	stow -t ~/ fish
 	stow -t ~/ tmux
+	stow -t ~/ sync
 	stow -t ~/ python
 	stow -t ~/ neomutt
 	stow -t ~/.weechat weechat

@@ -78,8 +78,8 @@ function setup_tmux
 	tmux new-window -t $SESSION:3 -n 'tasks'
 	setup_taskwarrior
 
-	tmux new-window -t $SESSION:3 -n 'news'
-	setup_news
+	tmux new-window -t $SESSION:3 -n 'know'
+	setup_know
 
 	# Set default window
 	tmux select-window -t $SESSION:1
@@ -106,13 +106,14 @@ function setup_taskwarrior
 	tmux select-pane -t 4
 end
 
-function setup_news
+function setup_know
 	# Split pane vertically first
 	tmux split-window -h -p 50
 	# Select top pane and split it horizontally
 	tmux select-pane -t 1
 	tmux send-keys "watch 300 senjutsu hn -tnb -s 5" C-m
 	tmux select-pane -t 2
+	tmux send-keys "buku" C-m
 end
 
 function setup_jira
