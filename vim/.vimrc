@@ -141,3 +141,6 @@ let g:ctrlp_map = '<c-p>'
 
 " Sudo write
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" Ripgrep
+let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
