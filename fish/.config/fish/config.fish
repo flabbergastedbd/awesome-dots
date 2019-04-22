@@ -138,3 +138,21 @@ function generate_image
 		convert -size $argv[1] xc:#$argv[2] $argv[3]
 	end
 end
+
+# Processing helpers
+alias to_str_json_array='awk \'BEGIN {printf "["} {printf t "\"%s\"",$0} {t=", "} END {printf "]"}\''
+alias to_int_json_array='awk \'BEGIN {printf "["} {printf t $0} {t=", "} END {printf "]"}\''
+alias to_jira_codefmt='awk \'BEGIN {printf "{code:theme=Midnight}\n"} { print $0 } END {printf "{code}\n"}\''
+
+function jira_codefmt_file
+	echo "{code:language=|title=$argv[1]|theme=Midnight}"
+	cat $argv[1]
+	echo "{code}"
+end
+
+if test -e ~/.custom.fish
+	source ~/.custom.fish
+end
+
+# Kali helpers
+alias kali='ssh -p 2222 root@localhost'

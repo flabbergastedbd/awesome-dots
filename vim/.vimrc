@@ -40,6 +40,9 @@ Plugin 'ervandew/supertab'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jremmen/vim-ripgrep'
 
@@ -144,3 +147,7 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Ripgrep
 let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+autocmd VimEnter * nested :call tagbar#autoopen(1)

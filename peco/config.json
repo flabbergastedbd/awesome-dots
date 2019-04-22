@@ -1,0 +1,7 @@
+{
+	"Prompt": "[peco]",
+	"Style": {
+		"Matched": ["bold", "blue"],
+		"Selected": ["black", "on_blue"]
+	}
+}

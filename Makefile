@@ -8,6 +8,7 @@ common:
 	stow -t ~/ sync
 	stow -t ~/ python
 	stow -t ~/ neomutt
+	stow -t ~/.config/peco peco
 	stow -t ~/.weechat weechat
 	stow -t ~/.config/radare2 radare2
 
