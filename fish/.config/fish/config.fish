@@ -15,6 +15,7 @@ end
 # Golang settings
 set -x GOPATH $HOME/workspace/golang
 set -gx PATH $PATH $GOPATH/bin
+set -gx PATH $PATH $HOME/.cargo/bin
 
 # Python
 # I cannot tell how much I hate this cached shit
