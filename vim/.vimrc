@@ -24,48 +24,40 @@ command! MakeTags !ctags -R --extra=+f --python-kinds=-iv .
 
 " Vundle stuff
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Airline instead of powerline, simple yet great
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'bling/vim-bufferline'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-bufferline'
 
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
-Plugin 'fatih/vim-go'
-Plugin 'rust-lang/rust.vim'
+Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
 
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'jremmen/vim-ripgrep'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jremmen/vim-ripgrep'
 
 " Completing engine
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 " Snippets are the love of my life
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " PEP-8 compliance help
-Plugin 'w0rp/ale'
-Plugin 'nvie/vim-flake8'
+Plug 'w0rp/ale'
+Plug 'nvie/vim-flake8'
 " Plugin 'klen/python-mode'
 
 " DVCS : Git, gitgutter for showing the changes beside line numbers
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
 syntax on
 filetype plugin indent on    " required
 
@@ -133,6 +125,9 @@ highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_lint_on_save=1  " Run lint only on save
 let g:ale_lint_on_text_changed=0
+let g:ale_rust_cargo_check_tests=1
+let g:ale_rust_rls_toolchain="stable"
+let g:ale_linters = {'rust': ['rls']}
 
 " netrw
 let g:netrw_liststyle = 3
@@ -141,6 +136,9 @@ let g:netrw_winsize = 25
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
+
+" FZF
+
 
 " Sudo write
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
