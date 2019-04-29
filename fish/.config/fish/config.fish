@@ -96,7 +96,7 @@ function setup_taskwarrior
 	tmux select-pane -t 1
 	tmux split-window -h -p 33
 	tmux select-pane -t 1
-	tmux send-keys "watch 300 task" C-m
+	tmux send-keys "watch 300 task -in -BLOCKED" C-m
 	tmux select-pane -t 2
 	tmux send-keys "watch 300 task summary" C-m
 	# Switch to pane 1

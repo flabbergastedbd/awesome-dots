@@ -9,6 +9,7 @@ set mailcap_path = ~/.config/mutt/mailcap
 # Email
 source ~/.config/mutt/jugadu.muttrc
 unset mark_old
+set new_mail_command="toastify send 'Neomutt' '%u unread messages'"
 
 # Prevent recording of sent
 # unset record
