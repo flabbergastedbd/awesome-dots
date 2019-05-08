@@ -12,6 +12,11 @@ if test -d "/usr/local/opt/coreutils/libexec/gnubin"
 	set -gx PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 end
 
+# linux fix
+if test -n (echo $SSH_AUTH_SOCK | tr -d " \r\n")
+	set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+end
+
 # Golang settings
 set -x GOPATH $HOME/workspace/golang
 set -gx PATH $PATH $GOPATH/bin
