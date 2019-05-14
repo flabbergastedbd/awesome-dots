@@ -154,6 +154,8 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 function! Beautify()
 	if (&filetype == "javascript") || (&filetype == "json")
 		execute "%!js-beautify"
+	else
+		execute "%!clang-format"
 	endif
 endfunction
 
