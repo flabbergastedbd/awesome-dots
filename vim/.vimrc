@@ -36,7 +36,10 @@ Plug 'ervandew/supertab'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 
-Plug 'ctrlpvim/ctrlp.vim'
+if isdirectory('/usr/local/opt/fzf')
+	Plug '/usr/local/opt/fzf'
+endif
+Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 
 " Completing engine
