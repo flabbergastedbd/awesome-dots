@@ -31,7 +31,7 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 
-Plug 'ervandew/supertab'
+Plug 'gu-fan/riv.vim'
 
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
@@ -43,7 +43,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 
 " Completing engine
+Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
+
+Plug 'tpope/vim-surround'
 
 " Snippets are the love of my life
 Plug 'SirVer/ultisnips'
@@ -142,6 +145,7 @@ let g:netrw_winsize = 25
 let g:ctrlp_map = '<c-p>'
 
 " FZF
+map ; :Files<CR>
 
 
 " Sudo write
