@@ -99,16 +99,16 @@ function setup_taskwarrior
 	tmux split-window -v -p 70
 	# Select top pane and split it horizontally
 	tmux select-pane -t 1
-	tmux split-window -h -p 33
+	tmux split-window -h -p 40
 	tmux select-pane -t 1
 	tmux send-keys "watch 300 task -in -BLOCKED" C-m
 	tmux select-pane -t 2
 	tmux send-keys "watch 900 vdirsyncer metasync\; vdirsyncer sync" C-m
 	# Switch to pane 1
 	tmux select-pane -t 3
-	tmux split-window -h -p 33
+	tmux split-window -h -p 40
 	tmux select-pane -t 3
-	tmux split-window -v -p 55
+	tmux split-window -v -p 50
 	tmux select-pane -t 3
 	tmux send-keys "watch 300 task calendar" C-m
 	tmux select-pane -t 5
