@@ -12,6 +12,10 @@ if test -d "/usr/local/opt/coreutils/libexec/gnubin"
 	set -gx PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 end
 
+if test -d "/usr/local/opt/ruby/bin"
+	set -g fish_user_paths "/usr/local/opt/ruby/bin" $fish_user_paths
+end
+
 # linux fix
 if test -n (echo $SSH_AUTH_SOCK | tr -d " \r\n")
 	set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
@@ -42,6 +46,9 @@ alias b="buku"
 
 # TaskWarrior Aliases
 alias in="task add +in"
+
+# Music
+alias get_song="youtube-dl -x --audio-quality 0 --audio-format flac -o \"~/Downloads/youtube-dl/%(title)s.%(ext)s\""
 
 # Virtualenv aliases
 function switch_to_virtualenv

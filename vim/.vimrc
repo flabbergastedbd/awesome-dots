@@ -62,6 +62,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'majutsushi/tagbar'
+Plug 'Yilin-Yang/vim-markbar'
 
 call plug#end()
 syntax on
@@ -134,6 +135,7 @@ let g:ale_lint_on_save=1  " Run lint only on save
 let g:ale_lint_on_text_changed=0
 let g:ale_rust_cargo_check_tests=1
 let g:ale_rust_rls_toolchain="stable"
+let g:ale_python_pyls_use_global=1
 let g:ale_linters = {'rust': ['rls']}
 
 " netrw
