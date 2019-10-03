@@ -5,7 +5,7 @@ set nowrap
 set modelines=1
 set sidescroll=10    " horizontal scrolling by character
 set relativenumber             " relative numbering
-set shell=bash
+set shell=fish
 
 set exrc
 set secure
@@ -137,6 +137,7 @@ let g:ale_rust_cargo_check_tests=1
 let g:ale_rust_rls_toolchain="stable"
 let g:ale_python_pyls_use_global=1
 let g:ale_linters = {'rust': ['rls']}
+let g:ale_completion_enabled = 1
 
 " netrw
 let g:netrw_liststyle = 3
