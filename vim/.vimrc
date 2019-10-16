@@ -40,7 +40,9 @@ if isdirectory('/usr/local/opt/fzf')
 	Plug '/usr/local/opt/fzf'
 endif
 Plug 'junegunn/fzf.vim'
-Plug 'jremmen/vim-ripgrep'
+Plug 'miki725/vim-ripgrep'
+" https://github.com/jremmen/vim-ripgrep/issues/41
+" Plug 'jremmen/vim-ripgrep'
 
 " Completing engine
 Plug 'ervandew/supertab'
