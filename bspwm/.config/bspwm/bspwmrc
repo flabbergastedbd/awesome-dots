@@ -14,7 +14,7 @@ compton -b
 # export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 
 # Wallpaper and finally the status bar
-feh --bg-scale --no-xinerama ~/Pictures/wallpaper.jpg
+feh --bg-center ~/Pictures/wallpaper.jpg
 yabar &
 
 
@@ -35,8 +35,8 @@ bspc config normal_border_color \#080808
 bspc config persistent_monitors true
 
 # bspc monitor -d             7 8 9 0
-bspc monitor -d 1
-bspc monitor primary -d 2 3 4 5 6 7
+bspc monitor -d 1 2
+bspc monitor primary -d 4 5 6 7
 
 # mpd
 # mpd
