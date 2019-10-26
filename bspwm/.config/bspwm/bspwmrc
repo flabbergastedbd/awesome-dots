@@ -14,7 +14,7 @@ compton -b
 # export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 
 # Wallpaper and finally the status bar
-feh --bg-center ~/Pictures/wallpaper.jpg
+feh --bg-fill ~/Pictures/wallpaper.jpg
 yabar &
 
 
