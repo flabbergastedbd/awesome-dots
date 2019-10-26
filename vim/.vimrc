@@ -5,7 +5,7 @@ set nowrap
 set modelines=1
 set sidescroll=10    " horizontal scrolling by character
 set relativenumber             " relative numbering
-set shell=bash
+set shell=fish
 
 set exrc
 set secure
@@ -40,7 +40,9 @@ if isdirectory('/usr/local/opt/fzf')
 	Plug '/usr/local/opt/fzf'
 endif
 Plug 'junegunn/fzf.vim'
-Plug 'jremmen/vim-ripgrep'
+Plug 'miki725/vim-ripgrep'
+" https://github.com/jremmen/vim-ripgrep/issues/41
+" Plug 'jremmen/vim-ripgrep'
 
 " Completing engine
 Plug 'ervandew/supertab'
@@ -137,6 +139,7 @@ let g:ale_rust_cargo_check_tests=1
 let g:ale_rust_rls_toolchain="stable"
 let g:ale_python_pyls_use_global=1
 let g:ale_linters = {'rust': ['rls']}
+let g:ale_completion_enabled = 1
 
 " netrw
 let g:netrw_liststyle = 3
