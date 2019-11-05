@@ -110,7 +110,7 @@ function setup_taskwarrior
 	tmux select-pane -t 1
 	tmux send-keys "watch 300 task -in -BLOCKED" C-m
 	tmux select-pane -t 2
-	tmux send-keys "vdirsyncer metasync\; vdirsyncer sync" C-m
+	tmux send-keys "watch 500 vdirsyncer metasync\; vdirsyncer sync" C-m
 	# Switch to pane 1
 	tmux select-pane -t 3
 	tmux split-window -h -p 50
