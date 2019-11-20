@@ -6,6 +6,7 @@ set modelines=1
 set sidescroll=10    " horizontal scrolling by character
 set relativenumber             " relative numbering
 set shell=fish
+set textwidth=120
 
 set exrc
 set secure
@@ -171,6 +172,9 @@ function! Beautify()
 		execute "%!clang-format"
 	endif
 endfunction
+
+" Text justifying
+ru macros/justify.vim
 
 " Custom commands
 command Beautify :call Beautify()
