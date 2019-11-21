@@ -99,7 +99,8 @@ autocmd Filetype html set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-autocmd BufWritePre * :%s/\s\+$//e
+let blacklist = ['markdown']
+autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
 
 " Backup locations
 set backup
