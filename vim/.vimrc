@@ -32,8 +32,6 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 
-Plug 'gu-fan/riv.vim'
-
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 
@@ -66,6 +64,14 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'majutsushi/tagbar'
 Plug 'Yilin-Yang/vim-markbar'
+
+" Writing
+Plug 'junegunn/goyo.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/limelight.vim'
+" Need node and yarn
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 call plug#end()
 syntax on
@@ -176,6 +182,10 @@ endfunction
 
 " Text justifying
 ru macros/justify.vim
+
+" Writing
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 " Custom commands
 command Beautify :call Beautify()
