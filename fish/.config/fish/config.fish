@@ -44,8 +44,6 @@ alias fd="fzf-cd-widget"
 # Bookmark manager
 alias b="buku"
 
-# TaskWarrior Aliases
-alias in="task add +in"
 
 # Music
 alias get_song="youtube-dl -x --audio-quality 0 --audio-format flac -o \"~/Downloads/youtube-dl/%(title)s.%(ext)s\""
@@ -88,9 +86,6 @@ function setup_tmux
 	tmux new-window -t $SESSION:2 -n 'weechat'
 	tmux send-keys "weechat" C-m
 
-	tmux new-window -t $SESSION:3 -n 'tasks'
-	setup_taskwarrior
-
 	tmux new-window -t $SESSION:3 -n 'know'
 	setup_know
 
@@ -99,28 +94,6 @@ function setup_tmux
 
 	# Attach to session
 	tmux -2 attach-session -t $SESSION
-end
-
-function setup_taskwarrior
-	# Split pane vertically first
-	tmux split-window -v -p 70
-	# Select top pane and split it horizontally
-	tmux select-pane -t 1
-	tmux split-window -h -p 50
-	tmux select-pane -t 1
-	tmux send-keys "watch 300 task -in -BLOCKED" C-m
-	tmux select-pane -t 2
-	tmux send-keys "watch 500 vdirsyncer metasync\; vdirsyncer sync" C-m
-	# Switch to pane 1
-	tmux select-pane -t 3
-	tmux split-window -h -p 50
-	tmux select-pane -t 3
-	tmux split-window -v -p 50
-	tmux select-pane -t 3
-	tmux send-keys "watch 300 task calendar" C-m
-	tmux select-pane -t 5
-	tmux send-keys "watch 300 khal calendar" C-m
-	tmux select-pane -t 4
 end
 
 function setup_know
