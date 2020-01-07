@@ -63,7 +63,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'majutsushi/tagbar'
-Plug 'Yilin-Yang/vim-markbar'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -159,6 +158,9 @@ let g:ctrlp_map = '<c-p>'
 
 " FZF
 map ; :Files<CR>
+
+" Markbar
+map ' :Marks<CR>
 
 
 " Sudo write
