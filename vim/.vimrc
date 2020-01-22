@@ -52,6 +52,7 @@ Plug 'tpope/vim-surround'
 " Snippets are the love of my life
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'junegunn/vim-emoji'
 
 " PEP-8 compliance help
 Plug 'w0rp/ale'
@@ -103,6 +104,7 @@ autocmd Filetype htmldjango set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype html set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype markdown set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 let blacklist = ['markdown']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
@@ -193,3 +195,9 @@ autocmd! User GoyoLeave Limelight!
 
 " Custom commands
 command Beautify :call Beautify()
+
+" Emoji
+augroup emoji_complete
+	autocmd FileType markdown setlocal completefunc=emoji#complete
+augroup END
+nmap <F9> :%s/:\([^:]\+\):/\=emoji#for(submatch(1),submatch(0))/g<CR>
