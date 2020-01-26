@@ -54,7 +54,8 @@ super + ctrl + space
 
 # Launch terminal emulator
 super + Return
-	termite -e /usr/bin/fish
+	alacritty
+	# termite -e /usr/bin/fish
 
 # Launcher
 super + d
