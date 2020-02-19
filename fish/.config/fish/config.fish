@@ -146,4 +146,3 @@ end
 
 # Kali helpers
 alias kali='ssh -p 2222 root@localhost'
-set -g fish_user_paths "/usr/local/opt/binutils/bin" $fish_user_paths
