@@ -6,7 +6,7 @@ set modelines=1
 set sidescroll=10    " horizontal scrolling by character
 set relativenumber             " relative numbering
 set shell=fish
-set textwidth=120
+set colorcolumn=120
 
 set exrc
 set secure
