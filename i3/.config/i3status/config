@@ -12,12 +12,17 @@ general {
 	separator = " "
 }
 
+order += "path_exists WG"
 order += "ipv6"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
 order += "memory"
 order += "tztime local"
+
+path_exists WG {
+	path = "/proc/sys/net/ipv4/conf/wg0"
+}
 
 wireless _first_ {
         format_up = "W: %ip"
