@@ -173,7 +173,7 @@ let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+" autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " Custom functions
 function! Beautify()
