@@ -15,7 +15,8 @@ common:
 	stow -t ~/.config/alacritty alacritty
 
 linux:
-	stow -t ~/ bspwm
+	# stow -t ~/ bspwm
+	stow -t ~/ i3
 
 osx:
 	@echo "OS X setup"
