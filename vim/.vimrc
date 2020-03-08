@@ -201,3 +201,17 @@ augroup emoji_complete
 	autocmd FileType markdown setlocal completefunc=emoji#complete
 augroup END
 nmap <F9> :%s/:\([^:]\+\):/\=emoji#for(submatch(1),submatch(0))/g<CR>
+
+" YCM LSP
+let g:ycm_language_server = [
+			\  {
+			\   'name': 'python',
+			\   'cmdline': ['pyls'],
+			\   'filetypes': ['python']
+			\  },
+			\  {
+			\   'name': 'rust',
+			\   'cmdline': ['rls'],
+			\   'filetypes': ['rust']
+			\  }
+\ ]
