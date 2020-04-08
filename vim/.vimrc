@@ -188,6 +188,8 @@ endfunction
 ru macros/justify.vim
 
 " Writing
+let g:goyo_width = 120
+let g:goyo_height = '90%'
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 autocmd! User GoyoEnter Limelight
