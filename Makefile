@@ -3,6 +3,7 @@
 common:
 	stow -t ~/ git
 	stow -t ~/ vim
+	stow -t ~/.config/nvim nvim
 	stow -t ~/ fish
 	stow -t ~/ tmux
 	stow -t ~/ sync
