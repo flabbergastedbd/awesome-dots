@@ -1,3 +1,4 @@
+add-auto-load-safe-path /home/tunnelshade/workspace/
 source ~/.config/gef.py
 
 # Tested in 3.10 kernel and used there so far
