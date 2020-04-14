@@ -1,0 +1,17 @@
+{
+	"languageserver": {
+		"codeql" : {
+			"command": "~/workspace/codeql/codeql/codeql",
+			"args": [
+				"execute",
+				"language-server",
+				"--check-errors=ON_CHANGE",
+				"--search-path=~/workspace/codeql/ql:./",
+				"-q"
+			],
+			"filetypes": ["codeql"],
+			"rootPatterns": ["qlpack.yml"],
+			"requireRootPattern": true
+		}
+	}
+}

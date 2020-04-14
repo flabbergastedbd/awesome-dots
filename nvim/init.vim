@@ -32,6 +32,7 @@ Plug 'itchyny/lightline.vim'
 " Languages
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
+Plug 'pwntester/codeql.nvim'
 
 if isdirectory('/usr/local/opt/fzf')
 	Plug '/usr/local/opt/fzf'
