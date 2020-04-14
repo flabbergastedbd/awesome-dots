@@ -210,3 +210,6 @@ hide_edge_borders smart_no_gaps
 
 # Wallpaper
 exec --no-startup-id feh --bg-scale --no-xinerama ~/Pictures/wallpaper.jpg
+
+# Monitors
+exec --no-startup-id bash ~/.screenlayout/default.sh
