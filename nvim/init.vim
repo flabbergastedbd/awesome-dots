@@ -33,6 +33,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 Plug 'pwntester/codeql.nvim'
+Plug 'keith/swift.vim'
 
 if isdirectory('/usr/local/opt/fzf')
 	Plug '/usr/local/opt/fzf'
