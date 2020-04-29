@@ -1,4 +1,14 @@
+# Follow all proceses
+set detach-on-fork on
+
+# Cache
+set index-cache on
+set print asm-demangle on
+
+# Safe load helper gdb scriupts
 add-auto-load-safe-path /home/tunnelshade/workspace/
+
+# Load GEF
 source ~/.config/gef.py
 
 # Tested in 3.10 kernel and used there so far

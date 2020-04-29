@@ -12,6 +12,13 @@
 			"filetypes": ["codeql"],
 			"rootPatterns": ["qlpack.yml"],
 			"requireRootPattern": true
+		},
+		"rust" : {
+			"command": "rust-analyzer",
+			"filetypes": ["rust"],
+			"rootPatterns": ["Cargo.toml"],
+			"requireRootPattern": true
 		}
+
 	}
 }
