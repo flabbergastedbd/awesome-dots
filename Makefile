@@ -18,6 +18,7 @@ common:
 linux:
 	# stow -t ~/ bspwm
 	stow -t ~/ i3
+	stow -t ~/ sway
 
 osx:
 	@echo "OS X setup"
