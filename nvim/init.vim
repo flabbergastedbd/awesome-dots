@@ -166,8 +166,8 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 
 " Tagbar
-" nmap <F8> :TagbarToggle<CR>
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+nmap <F8> :TagbarToggle<CR>
+" autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " Text justifying
 ru macros/justify.vim
