@@ -18,6 +18,7 @@ order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
 order += "memory"
+order += "cpu_usage"
 order += "tztime local"
 
 path_exists WG {
@@ -41,7 +42,7 @@ battery all {
 }
 
 memory {
-        format = "%percentage_available"
+        format = "%available/%total"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
