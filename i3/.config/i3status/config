@@ -41,7 +41,7 @@ battery all {
 }
 
 memory {
-        format = "%used | %available"
+        format = "%percentage_available"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
