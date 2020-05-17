@@ -5,7 +5,8 @@ set fish_greeting "Hey, do you see something fishy?"
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
-set -gx TERM "screen-256color"
+# Disabled to support right font in alacritty
+# set -gx TERM "screen-256color"
 
 # osx fix
 if test -d "/usr/local/opt/coreutils/libexec/gnubin"
