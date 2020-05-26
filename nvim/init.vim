@@ -127,26 +127,29 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <C-e> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-let g:UltiSnipsExpandTrigger = "<C-e>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:ultisnips_python_style="google"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/plugged/vim-snippets/UltiSnips']
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" Lint Engine
-let g:ale_sign_warning="⚠"
-let g:ale_sign_error="x"
-nmap <silent> [l <Plug>(ale_previous_wrap)
-nmap <silent> ]l <Plug>(ale_next_wrap)
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-let g:ale_lint_on_save=1  " Run lint only on save
-let g:ale_lint_on_text_changed=0
-let g:ale_rust_cargo_check_tests=1
-let g:ale_rust_rls_toolchain="stable"
-let g:ale_python_pyls_use_global=1
-let g:ale_linters = {'rust': ['rls']}
-let g:ale_completion_enabled = 1
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " netrw
 let g:netrw_liststyle = 3
