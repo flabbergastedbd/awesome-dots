@@ -1,5 +1,7 @@
 " Basic editor stuff
 set number          " show line numbers
+set spell
+set spelllang=en    " spell languages
 set nofoldenable    " disable folding
 set nowrap
 set modelines=1
@@ -53,7 +55,6 @@ Plug 'tpope/vim-surround'
 Plug 'honza/vim-snippets'
 
 " Linting
-"Plug 'w0rp/ale'
 Plug 'nvie/vim-flake8'
 
 " DVCS : Git, gitgutter for showing the changes beside line numbers
@@ -65,8 +66,12 @@ Plug 'majutsushi/tagbar'
 " Writing
 Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
-" Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
+
+" Note taking
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 " Themes
 Plug 'morhetz/gruvbox'
@@ -102,6 +107,9 @@ autocmd Filetype html set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype markdown set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype ql set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+autocmd BufRead,BufNewFile *.md set filetype=vimwiki
 
 let blacklist = ['markdown']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
@@ -111,6 +119,12 @@ set backup
 set backupdir=~/.vim/backup
 set directory=/tmp
 
+" Note taking
+let g:vimwiki_list = [{'path': '~/workspace/notes', 'syntax': 'markdown', 'ext': '.md'}]
+let g:zettel_format = "%y%m%d-%H%M"
+let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
+let g:zettel_options = [{"template": "~/workspace/zettelkasten-templates/note.tpl"}]
+
 " Splitfu
 " Just navigate around splits vim way
 nnoremap <C-J> <C-W><C-J>
@@ -119,10 +133,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "" Ultisnips
-" make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <C-e> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
