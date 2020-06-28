@@ -1,7 +1,5 @@
 " Basic editor stuff
 set number          " show line numbers
-set spell
-set spelllang=en    " spell languages
 set nofoldenable    " disable folding
 set nowrap
 set modelines=1
@@ -109,7 +107,7 @@ autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype markdown set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype ql set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-autocmd BufRead,BufNewFile *.md set filetype=vimwiki
+" autocmd BufRead,BufNewFile *.md set filetype=vimwiki
 
 let blacklist = ['markdown']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
@@ -120,10 +118,10 @@ set backupdir=~/.vim/backup
 set directory=/tmp
 
 " Note taking
-let g:vimwiki_list = [{'path': '~/workspace/notes', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_list = [{'path': '~/workspace/notes/slips', 'syntax': 'markdown', 'ext': '.md'}]
 let g:zettel_format = "%y%m%d-%H%M"
 let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
-let g:zettel_options = [{"template": "~/workspace/zettelkasten-templates/note.tpl"}]
 
 " Splitfu
 " Just navigate around splits vim way
@@ -180,6 +178,7 @@ let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
+:map <F11> :setlocal spell! spelllang=en_us<CR>
 " autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " Text justifying
