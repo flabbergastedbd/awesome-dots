@@ -65,7 +65,7 @@ Plug 'majutsushi/tagbar'
 " Writing
 Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
-" Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
 
 " Themes
@@ -102,6 +102,8 @@ autocmd Filetype html set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype markdown set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+autocmd BufNewFile,BufRead *.webidl,*.ipdl set ft=idl
 
 let blacklist = ['markdown']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
