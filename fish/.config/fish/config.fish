@@ -9,6 +9,11 @@ set -x LANG en_US.UTF-8
 # set -gx TERM "screen-256color"
 
 # osx fix
+if test -d "/usr/local/bin"
+	set -gx PATH "/usr/local/bin" $PATH
+end
+
+# osx fix
 if test -d "/usr/local/opt/coreutils/libexec/gnubin"
 	set -gx PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 end

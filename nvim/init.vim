@@ -53,7 +53,6 @@ Plug 'tpope/vim-surround'
 Plug 'honza/vim-snippets'
 
 " Linting
-"Plug 'w0rp/ale'
 Plug 'nvie/vim-flake8'
 
 " DVCS : Git, gitgutter for showing the changes beside line numbers
@@ -67,6 +66,10 @@ Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
+
+" Note taking
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 " Themes
 Plug 'morhetz/gruvbox'
@@ -102,6 +105,9 @@ autocmd Filetype html set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype markdown set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype ql set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" autocmd BufRead,BufNewFile *.md set filetype=vimwiki
 
 autocmd BufNewFile,BufRead *.webidl,*.ipdl set ft=idl
 
@@ -113,6 +119,12 @@ set backup
 set backupdir=~/.vim/backup
 set directory=/tmp
 
+" Note taking
+let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_list = [{'path': '~/workspace/notes/slips', 'syntax': 'markdown', 'ext': '.md'}]
+let g:zettel_format = "%y%m%d-%H%M"
+let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
+
 " Splitfu
 " Just navigate around splits vim way
 nnoremap <C-J> <C-W><C-J>
@@ -121,34 +133,33 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "" Ultisnips
-" make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <C-e> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-let g:UltiSnipsExpandTrigger = "<C-e>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:ultisnips_python_style="google"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/plugged/vim-snippets/UltiSnips']
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" Lint Engine
-let g:ale_sign_warning="⚠"
-let g:ale_sign_error="x"
-nmap <silent> [l <Plug>(ale_previous_wrap)
-nmap <silent> ]l <Plug>(ale_next_wrap)
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-let g:ale_lint_on_save=1  " Run lint only on save
-let g:ale_lint_on_text_changed=0
-let g:ale_rust_cargo_check_tests=1
-let g:ale_rust_rls_toolchain="stable"
-let g:ale_python_pyls_use_global=1
-let g:ale_linters = {'rust': ['rls']}
-let g:ale_completion_enabled = 1
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " netrw
 let g:netrw_liststyle = 3
@@ -169,6 +180,7 @@ let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
+:map <F11> :setlocal spell! spelllang=en_us<CR>
 " autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " Text justifying

@@ -1,24 +1,33 @@
 {
-	"languageserver": {
-		"codeql" : {
-			"command": "~/workspace/codeql/codeql/codeql",
-			"args": [
-				"execute",
-				"language-server",
-				"--check-errors=ON_CHANGE",
-				"--search-path=~/workspace/codeql/ql:./",
-				"-q"
-			],
-			"filetypes": ["codeql"],
-			"rootPatterns": ["qlpack.yml"],
-			"requireRootPattern": true
-		},
-		"rust" : {
-			"command": "rust-analyzer",
-			"filetypes": ["rust"],
-			"rootPatterns": ["Cargo.toml"],
-			"requireRootPattern": true
-		}
-
-	}
+  "languageserver": {
+    "codeql" : {
+      "command": "codeql",
+      "args": [
+        "execute",
+        "language-server",
+        "--check-errors=ON_CHANGE",
+        "--search-path=./",
+        "-q"
+      ],
+      "filetypes": ["codeql"],
+      "rootPatterns": ["qlpack.yml"],
+      "requireRootPattern": true
+    },
+    "rust" : {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"],
+      "requireRootPattern": true
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    }
+  }
 }
