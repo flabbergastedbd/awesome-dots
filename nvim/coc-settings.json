@@ -6,10 +6,10 @@
         "execute",
         "language-server",
         "--check-errors=ON_CHANGE",
-        "--search-path=./",
+        "--search-path=/home/tunnelshade/workspace/codeql/codeql/:./",
         "-q"
       ],
-      "filetypes": ["codeql"],
+      "filetypes": ["ql"],
       "rootPatterns": ["qlpack.yml"],
       "requireRootPattern": true
     },

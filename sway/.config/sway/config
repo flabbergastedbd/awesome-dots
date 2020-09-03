@@ -217,5 +217,5 @@ output "*" bg /home/tunnelshade/Pictures/wallpaper.jpg fill
 #exec --no-startup-id bash ~/.screenlayout/default.sh
 output HDMI-1 pos 0 353 res 1920 1080
 output DVI-D-1 pos 1920 0 res 1920 1080
-
 output DVI-D-1 transform 90
+focus output HDMI-1

@@ -110,6 +110,7 @@ autocmd Filetype ql set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 " autocmd BufRead,BufNewFile *.md set filetype=vimwiki
 
 autocmd BufNewFile,BufRead *.webidl,*.ipdl set ft=idl
+autocmd BufNewFile,BufRead *.jsm set ft=javascript
 
 let blacklist = ['markdown']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
@@ -118,6 +119,10 @@ autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
 set backup
 set backupdir=~/.vim/backup
 set directory=/tmp
+
+" codeql
+let g:codeql_max_ram = 8000
+let g:codeql_search_path = '/home/tunnelshade/workspace/codeql/codeql/'
 
 " Note taking
 let g:vimwiki_markdown_link_ext = 1
