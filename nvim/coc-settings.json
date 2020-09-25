@@ -1,4 +1,6 @@
 {
+  "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+  "rust-analyzer.inlayHints.chainingHints": false,
   "languageserver": {
     "codeql" : {
       "command": "codeql",
@@ -11,12 +13,6 @@
       ],
       "filetypes": ["ql"],
       "rootPatterns": ["qlpack.yml"],
-      "requireRootPattern": true
-    },
-    "rust" : {
-      "command": "rust-analyzer",
-      "filetypes": ["rust"],
-      "rootPatterns": ["Cargo.toml"],
       "requireRootPattern": true
     },
     "ccls": {
