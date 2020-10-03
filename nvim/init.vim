@@ -68,8 +68,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
 
 " Note taking
-Plug 'vimwiki/vimwiki'
-Plug 'michal-h21/vim-zettel'
 
 " Themes
 Plug 'morhetz/gruvbox'
@@ -107,8 +105,6 @@ autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype markdown set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype ql set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-" autocmd BufRead,BufNewFile *.md set filetype=vimwiki
-
 autocmd BufNewFile,BufRead *.webidl,*.ipdl set ft=idl
 autocmd BufNewFile,BufRead *.jsm set ft=javascript
 
@@ -123,12 +119,6 @@ set directory=/tmp
 " codeql
 let g:codeql_max_ram = 8000
 let g:codeql_search_path = '/home/tunnelshade/workspace/codeql/codeql/'
-
-" Note taking
-let g:vimwiki_markdown_link_ext = 1
-let g:vimwiki_list = [{'path': '~/workspace/notes/slips', 'syntax': 'markdown', 'ext': '.md'}]
-let g:zettel_format = "%y%m%d-%H%M"
-let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
 
 " Splitfu
 " Just navigate around splits vim way
@@ -201,6 +191,7 @@ autocmd! User GoyoLeave Limelight!
 
 " Format
 let g:rustfmt_autosave = 1
+autocmd FileType ql autocmd BufWrite <buffer> :%!codeql query format -
 
 command Beautify :call Beautify()
 
