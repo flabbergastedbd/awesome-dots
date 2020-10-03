@@ -127,8 +127,8 @@ workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
 workspace $ws6 output primary
-workspace $ws7 output secondary primary
-workspace $ws8 output secondary primary
+workspace $ws7 output primary
+workspace $ws8 output primary
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -215,7 +215,7 @@ output "*" bg /home/tunnelshade/Pictures/wallpaper.jpg fill
 
 # Monitors
 #exec --no-startup-id bash ~/.screenlayout/default.sh
-output HDMI-1 pos 0 353 res 1920 1080
-output DVI-D-1 pos 1920 0 res 1920 1080
-output DVI-D-1 transform 90
-focus output HDMI-1
+output HDMI-A-1 pos 0 0 res 1920 1080
+# output DVI-D-1 pos 1920 0 res 1920 1080
+# output DVI-D-1 transform 90
+focus output HDMI-A-1
