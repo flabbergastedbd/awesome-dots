@@ -31,7 +31,7 @@ Plug 'itchyny/lightline.vim'
 
 " Languages
 Plug 'fatih/vim-go'
-" Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'pwntester/codeql.nvim'
 Plug 'keith/swift.vim'
 
@@ -198,6 +198,9 @@ let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+" Format
+let g:rustfmt_autosave = 1
 
 command Beautify :call Beautify()
 
