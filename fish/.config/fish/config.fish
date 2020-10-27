@@ -47,13 +47,6 @@ alias ll="ls -l"
 # Fuzzy changing
 alias fd="fzf-cd-widget"
 
-# Bookmark manager
-alias b="buku"
-
-
-# Music
-alias get_song="youtube-dl -x --audio-quality 0 --audio-format flac -o \"~/Downloads/youtube-dl/%(title)s.%(ext)s\""
-
 # Virtualenv aliases
 function switch_to_virtualenv
 	test -d .venv
@@ -74,59 +67,6 @@ function watch
  	end
 end
 
-function is_tmux
-	if set -q TMUX
-		return 0
-	else
-		return 1
-	end
-end
-
-# Tmux shortcut
-function setup_tmux
-	set -l SESSION main
-
-	tmux -2 new-session -d -s $SESSION -n 'mail'
-	tmux send-keys "neomutt" C-m
-
-	tmux new-window -t $SESSION:2 -n 'weechat'
-	tmux send-keys "weechat" C-m
-
-	tmux new-window -t $SESSION:3 -n 'know'
-	setup_know
-
-	# Set default window
-	tmux select-window -t $SESSION:1
-
-	# Attach to session
-	tmux -2 attach-session -t $SESSION
-end
-
-function setup_know
-	# Split pane vertically first
-	tmux split-window -h -p 50
-	# Select top pane and split it horizontally
-	tmux select-pane -t 1
-	tmux send-keys "watch 300 senjutsu hn -tnb -s 5" C-m
-	tmux select-pane -t 2
-	tmux send-keys "buku" C-m
-end
-
-function setup_jira
-	# Split pane vertically first
-	tmux split-window -v -p 60
-	# Select top pane and split it horizontally
-	tmux select-pane -t 2
-	tmux split-window -v -p 60
-	tmux select-pane -t 1
-	tmux send-keys "watch 300 senjutsu jira -d open_sprint_tasks" C-m
-	tmux select-pane -t 2
-	tmux send-keys "watch 300 senjutsu jira -d pending_bug_tasks" C-m
-	# Switch to pane 1
-	tmux select-pane -t 3
-	tmux send-keys "watch 300 senjutsu jira -d closed_sprint_tasks" C-m
-end
-
 function generate_image
 	if test (count $argv) -lt 3
 		echo "Usage: <command> widthxheigth fffffff filename"
@@ -140,15 +80,8 @@ alias to_str_json_array='awk \'BEGIN {printf "["} {printf t "\"%s\"",$0} {t=", "
 alias to_int_json_array='awk \'BEGIN {printf "["} {printf t $0} {t=", "} END {printf "]"}\''
 alias to_jira_codefmt='awk \'BEGIN {printf "{code:theme=Midnight}\n"} { print $0 } END {printf "{code}\n"}\''
 
-function jira_codefmt_file
-	echo "{code:language=|title=$argv[1]|theme=Midnight}"
-	cat $argv[1]
-	echo "{code}"
-end
-
 if test -e ~/.custom.fish
 	source ~/.custom.fish
 end
-
-# Kali helpers
-alias kali='ssh -p 2222 root@localhost'
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH

@@ -96,6 +96,13 @@ set hlsearch incsearch ignorecase " highlight search, incremental search and ign
 " double escape for removing search highlights
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
+" Semicolon
+nmap ; :
+
+" Leader
+nnoremap <space> <Nop>
+let mapleader=" "
+
 " File specific hacks
 autocmd Filetype python set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype htmldjango set expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -103,6 +110,7 @@ autocmd Filetype html set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype markdown set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype xml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype ql set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 autocmd BufNewFile,BufRead *.webidl,*.ipdl set ft=idl
@@ -113,12 +121,11 @@ autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
 
 " Backup locations
 set backup
-set backupdir=~/.vim/backup
+set backupdir=~/.config/nvim/backup
 set directory=/tmp
 
 " codeql
 let g:codeql_max_ram = 8000
-let g:codeql_search_path = '/home/tunnelshade/workspace/codeql/codeql/'
 
 " Splitfu
 " Just navigate around splits vim way
@@ -161,9 +168,6 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
 
-" FZF
-map ; :Files<CR>
-
 " Markbar
 map ' :Marks<CR>
 
@@ -204,3 +208,5 @@ function! Beautify()
 	endif
 endfunction
 
+" Custom mappings
+nnoremap <leader>w :w<CR>
