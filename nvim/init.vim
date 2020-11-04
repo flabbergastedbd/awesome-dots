@@ -126,6 +126,7 @@ set directory=/tmp
 
 " codeql
 let g:codeql_max_ram = 8000
+let g:codeql_search_path = '/home/tunnelshade/workspace/codeql/codeql/'
 
 " Splitfu
 " Just navigate around splits vim way
@@ -195,7 +196,6 @@ autocmd! User GoyoLeave Limelight!
 
 " Format
 let g:rustfmt_autosave = 1
-autocmd FileType ql autocmd BufWrite <buffer> :%!codeql query format -
 
 command Beautify :call Beautify()
 
