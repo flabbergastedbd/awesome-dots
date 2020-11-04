@@ -210,3 +210,6 @@ endfunction
 
 " Custom mappings
 nnoremap <leader>w :w<CR>
+nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>q :q<CR>
