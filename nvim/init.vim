@@ -125,8 +125,8 @@ set backupdir=~/.config/nvim/backup
 set directory=/tmp
 
 " codeql
-let g:codeql_max_ram = 8000
-let g:codeql_search_path = '/home/tunnelshade/workspace/codeql/codeql/'
+let g:codeql_max_ram = 16000
+let g:codeql_search_path = []
 
 " Splitfu
 " Just navigate around splits vim way
@@ -181,7 +181,7 @@ let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 :map <F11> :setlocal spell! spelllang=en_us<CR>
-" autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " Text justifying
 ru macros/justify.vim
