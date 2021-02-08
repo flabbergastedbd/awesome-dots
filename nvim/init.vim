@@ -131,6 +131,7 @@ set directory=/tmp
 " codeql
 let g:codeql_max_ram = 16000
 let g:codeql_search_path = []
+let g:codeql_fmt_onsave = 1
 
 " Splitfu
 " Just navigate around splits vim way
