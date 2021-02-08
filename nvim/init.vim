@@ -67,6 +67,10 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
 
+" Terminal
+Plug 'voldikss/fzf-floaterm'
+Plug 'voldikss/vim-floaterm'
+
 " Note taking
 
 " Themes
@@ -89,7 +93,7 @@ let g:rehash256=1
 " Colorscheme
 set background=dark
 colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='soft'
 
 " Search customisations
 set hlsearch incsearch ignorecase " highlight search, incremental search and ignore case
@@ -210,6 +214,10 @@ endfunction
 
 " Custom mappings
 nnoremap <leader>w :w<CR>
-nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader>t :FloatermToggle<CR>
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>q :q<CR>
+
+" Floaterm
+tnoremap <Esc><Esc> <C-\><C-n>
+let g:floaterm_autoclose = 1
