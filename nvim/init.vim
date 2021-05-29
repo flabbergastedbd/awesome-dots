@@ -42,6 +42,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'miki725/vim-ripgrep'
 " https://github.com/jremmen/vim-ripgrep/issues/41
 " Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/vim-emoji'
 
 " Completing engine
 " Plug 'ervandew/supertab'
@@ -71,8 +72,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'voldikss/fzf-floaterm'
 Plug 'voldikss/vim-floaterm'
 
-" Note taking
-
+Plug 'nvim-treesitter/nvim-treesitter' " We recommend updating the parsers on update
 " Themes
 Plug 'morhetz/gruvbox'
 
@@ -122,6 +122,7 @@ autocmd BufNewFile,BufRead *.jsm set ft=javascript
 
 let blacklist = ['markdown']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
+autocmd BufRead,BufNewFile *.md setlocal wrap  " Wrap lines for markdown
 
 " Backup locations
 set backup
@@ -130,7 +131,7 @@ set directory=/tmp
 
 " codeql
 let g:codeql_max_ram = 16000
-let g:codeql_search_path = []
+let g:codeql_search_path = ["/Users/bmachira/workspace/linkedin/qlin_trunk"]
 let g:codeql_fmt_onsave = 1
 
 " Splitfu
@@ -186,7 +187,7 @@ let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 :map <F11> :setlocal spell! spelllang=en_us<CR>
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd VimEnter * nested TagbarOpen
 
 " Text justifying
 ru macros/justify.vim
@@ -217,8 +218,19 @@ endfunction
 nnoremap <leader>w :w<CR>
 nnoremap <leader>t :FloatermToggle<CR>
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>q :q<CR>
 
 " Floaterm
 tnoremap <Esc><Esc> <C-\><C-n>
 let g:floaterm_autoclose = 1
+
+" Treesitter
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true, -- false will disable the whole extension
+  },
+}
+EOF
