@@ -258,8 +258,8 @@ au FileType vimwiki set filetype=markdown.pandoc
 " vim-pandoc
 let g:pandoc#folding#fdc=0
 let g:pandoc#folding#fold_yaml=1
-" let g:pandoc#folding#folding_yaml=10
-" let g:pandoc#folding#level = 10
+let g:pandoc#folding#foldlevel_yaml=11 " As per no heading text level and how to fold only yaml frontmatter
+let g:pandoc#folding#level=10
 let g:pandoc#syntax#conceal#urls=1
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 let g:pandoc#filetypes#pandoc_markdown = 0
