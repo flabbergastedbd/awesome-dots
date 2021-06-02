@@ -39,9 +39,6 @@ if isdirectory('/usr/local/opt/fzf')
 	Plug '/usr/local/opt/fzf'
 endif
 Plug 'junegunn/fzf.vim'
-Plug 'miki725/vim-ripgrep'
-" https://github.com/jremmen/vim-ripgrep/issues/41
-" Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/vim-emoji'
 
 " Completing engine
@@ -66,7 +63,10 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'junegunn/limelight.vim'
+Plug 'cespare/vim-toml'
+Plug 'ferrine/md-img-paste.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 " Terminal
 Plug 'voldikss/fzf-floaterm'
@@ -113,6 +113,7 @@ autocmd Filetype htmldjango set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype html set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype yaml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype typescript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype markdown set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype xml set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype ql set expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -120,9 +121,10 @@ autocmd Filetype ql set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.webidl,*.ipdl set ft=idl
 autocmd BufNewFile,BufRead *.jsm set ft=javascript
 
-let blacklist = ['markdown']
-autocmd BufWritePre * if index(blacklist, &ft) < 0 | :%s/\s\+$//e
+let denylist = ['markdown']
+autocmd BufWritePre * if index(denylist, &ft) < 0 | :%s/\s\+$//e
 autocmd BufRead,BufNewFile *.md setlocal wrap  " Wrap lines for markdown
+autocmd BufRead,BufNewFile *.md set textwidth=120  " Wrap lines for markdown
 
 " Backup locations
 set backup
@@ -193,12 +195,12 @@ autocmd VimEnter * nested TagbarOpen
 ru macros/justify.vim
 
 " Writing
-let g:goyo_width = 120
-let g:goyo_height = '90%'
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+let g:goyo_width = '100%'
+let g:goyo_height = '100%'
+" let g:limelight_conceal_ctermfg = 'gray'
+" let g:limelight_conceal_ctermfg = 240
+" autocmd! User GoyoEnter Limelight
+" autocmd! User GoyoLeave Limelight!
 
 " Format
 let g:rustfmt_autosave = 1
@@ -218,6 +220,7 @@ endfunction
 nnoremap <leader>w :w<CR>
 nnoremap <leader>t :FloatermToggle<CR>
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>F :Rg<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>q :q<CR>
 
@@ -231,6 +234,61 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true, -- false will disable the whole extension
+    disable = { "markdown" },
   },
 }
 EOF
+
+" Writing
+" Image copy paste
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+let g:mdip_imgdir = 'images'
+" Vimwiki config
+let g:vimwiki_list = [{'path': '~/workspace/notes/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_markdown_link_ext = 1
+" Zettel config
+let g:zettel_random_chars=16
+let g:zettel_format = "%random"
+let g:zettel_default_mappings = 0
+let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
+let g:zettel_options = [{"front_matter" : [["taxonomies", ""]]}]
+augroup filetype_vimwiki
+  autocmd!
+  autocmd FileType vimwiki imap <silent> [[ [[<esc><Plug>ZettelSearch
+  autocmd FileType vimwiki nmap <leader>zn :ZettelNew<CR>
+  autocmd FileType vimwiki nmap <leader>zs :ZettelSearch<CR>
+  autocmd FileType vimwiki nmap <leader>zo :ZettelOpen<CR>
+  autocmd FileType vimwiki nmap <leader>zb :ZettelBackLinks<CR>
+augroup END
+" Markdown rendering
+set conceallevel=2
+set concealcursor="nc"
+let g:vim_markdown_conceal=1
+let g:vim_markdown_follow_anchor=1
+let g:vim_markdown_toml_frontmatter=1
+let g:vim_markdown_yaml_frontmatter=1
+let g:vim_markdown_new_list_item_indent=2
+
+" hide tmux pane when switching to write
+function! s:goyo_enter()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
+  set showmode
+  set showcmd
+  set scrolloff=5
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
