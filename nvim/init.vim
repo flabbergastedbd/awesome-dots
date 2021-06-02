@@ -1,6 +1,6 @@
 " Basic editor stuff
 set number          " show line numbers
-set nofoldenable    " disable folding
+set foldenable
 set nowrap
 set modelines=1
 set sidescroll=10    " horizontal scrolling by character
@@ -64,6 +64,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
 Plug 'cespare/vim-toml'
 Plug 'ferrine/md-img-paste.vim'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vimwiki/vimwiki'
 Plug 'michal-h21/vim-zettel'
 
@@ -122,8 +124,8 @@ autocmd BufNewFile,BufRead *.jsm set ft=javascript
 
 let denylist = ['markdown']
 autocmd BufWritePre * if index(denylist, &ft) < 0 | :%s/\s\+$//e
-autocmd BufRead,BufNewFile *.md setlocal wrap  " Wrap lines for markdown
-autocmd BufRead,BufNewFile *.md set textwidth=120  " Wrap lines for markdown
+" autocmd BufRead,BufNewFile *.md setlocal wrap  " Wrap lines for markdown
+" autocmd BufRead,BufNewFile *.md set textwidth=120  " Wrap lines for markdown
 
 " Backup locations
 set backup
@@ -188,8 +190,8 @@ let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 map <F11> :setlocal spell! spelllang=en_us<CR>
-let tagbar_denylist = ["markdown", "vimwiki"]
-autocmd VimEnter * if index(tagbar_denylist, &ft) < 0 | TagbarOpen
+let tagbar_denylist = ["markdown", "vimwiki", "vimwiki.markdown", "markdown.pandoc"]
+autocmd VimEnter * if stridx(&ft, "markdown") < 0 | TagbarOpen
 
 " Text justifying
 ru macros/justify.vim
@@ -239,15 +241,33 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" Writing
+"" Writing
 " Image copy paste
 autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 let g:mdip_imgdir = 'images'
+
 " Vimwiki config
 let g:vimwiki_list = [{'path': '~/workspace/notes/', 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_markdown_link_ext = 1
-let g:vimwiki_conceallevel = 2
-let g:vimwiki_autowriteall = 0 " Irritating
+let g:vimwiki_markdown_link_ext=1
+let g:vimwiki_conceallevel=2
+let g:vimwiki_autowriteall=0 " Irritating
+let g:vimwiki_folding='custom'
+let g:vimwiki_global_ext=0
+au FileType vimwiki set filetype=markdown.pandoc
+
+" vim-pandoc
+let g:pandoc#folding#fdc=0
+let g:pandoc#folding#fold_yaml=1
+" let g:pandoc#folding#folding_yaml=10
+" let g:pandoc#folding#level = 10
+let g:pandoc#syntax#conceal#urls=1
+let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
+let g:pandoc#filetypes#pandoc_markdown = 0
+let g:pandoc#folding#mode = "syntax"
+let g:pandoc#modules#enabled = ["folding", "formatting"]
+let g:pandoc#formatting#mode = "ha"
+let g:pandoc#formatting#textwidth = 120
+
 " Zettel config
 let g:zettel_random_chars=16
 let g:zettel_format = "%random"
@@ -263,7 +283,7 @@ augroup filetype_vimwiki
   autocmd FileType vimwiki nmap <leader>zb :ZettelBackLinks<CR>
 augroup END
 
-" hide tmux pane when switching to write
+" Goyo: Hide tmux pane when switching to write
 function! s:goyo_enter()
   if executable('tmux') && strlen($TMUX)
     silent !tmux set status off
