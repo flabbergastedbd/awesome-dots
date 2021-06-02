@@ -62,7 +62,6 @@ Plug 'majutsushi/tagbar'
 " Writing
 Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 Plug 'cespare/vim-toml'
 Plug 'ferrine/md-img-paste.vim'
 Plug 'vimwiki/vimwiki'
@@ -188,8 +187,9 @@ let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
-:map <F11> :setlocal spell! spelllang=en_us<CR>
-autocmd VimEnter * nested TagbarOpen
+map <F11> :setlocal spell! spelllang=en_us<CR>
+let tagbar_denylist = ["markdown", "vimwiki"]
+autocmd VimEnter * if index(tagbar_denylist, &ft) < 0 | TagbarOpen
 
 " Text justifying
 ru macros/justify.vim
@@ -246,6 +246,8 @@ let g:mdip_imgdir = 'images'
 " Vimwiki config
 let g:vimwiki_list = [{'path': '~/workspace/notes/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_conceallevel = 2
+let g:vimwiki_autowriteall = 0 " Irritating
 " Zettel config
 let g:zettel_random_chars=16
 let g:zettel_format = "%random"
@@ -254,20 +256,12 @@ let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading
 let g:zettel_options = [{"front_matter" : [["taxonomies", ""]]}]
 augroup filetype_vimwiki
   autocmd!
-  autocmd FileType vimwiki imap <silent> [[ [[<esc><Plug>ZettelSearch
-  autocmd FileType vimwiki nmap <leader>zn :ZettelNew<CR>
-  autocmd FileType vimwiki nmap <leader>zs :ZettelSearch<CR>
+  autocmd FileType vimwiki imap <silent> [[ [[<esc><Plug>ZettelSearchMap
+  autocmd FileType vimwiki xmap <leader>zn <Plug>ZettelNewSelectedMap
+  autocmd FileType vimwiki nmap <leader>zs <Plug>ZettelSearchMap
   autocmd FileType vimwiki nmap <leader>zo :ZettelOpen<CR>
   autocmd FileType vimwiki nmap <leader>zb :ZettelBackLinks<CR>
 augroup END
-" Markdown rendering
-set conceallevel=2
-set concealcursor="nc"
-let g:vim_markdown_conceal=1
-let g:vim_markdown_follow_anchor=1
-let g:vim_markdown_toml_frontmatter=1
-let g:vim_markdown_yaml_frontmatter=1
-let g:vim_markdown_new_list_item_indent=2
 
 " hide tmux pane when switching to write
 function! s:goyo_enter()
