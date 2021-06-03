@@ -243,7 +243,7 @@ EOF
 
 "" Writing
 " Image copy paste
-autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+autocmd FileType markdown nmap <buffer><silent> <leader>zp :call mdip#MarkdownClipboardImage()<CR>
 let g:mdip_imgdir = 'images'
 
 " Vimwiki config
@@ -282,6 +282,8 @@ augroup filetype_vimwiki
   autocmd FileType vimwiki nmap <leader>zs <Plug>ZettelSearchMap
   autocmd FileType vimwiki nmap <leader>zo :ZettelOpen<CR>
   autocmd FileType vimwiki nmap <leader>zb :ZettelBackLinks<CR>
+  autocmd FileType vimwiki nmap <leader>fx <Plug>VimwikiSplitLink
+  autocmd FileType vimwiki nmap <leader>fv <Plug>VimwikiVSplitLink
 augroup END
 
 " Goyo: Hide tmux pane when switching to write
