@@ -39,7 +39,6 @@ if isdirectory('/usr/local/opt/fzf')
 	Plug '/usr/local/opt/fzf'
 endif
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-emoji'
 
 " Completing engine
 " Plug 'ervandew/supertab'
@@ -66,7 +65,7 @@ Plug 'cespare/vim-toml'
 Plug 'ferrine/md-img-paste.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'michal-h21/vim-zettel'
 
 " Terminal
@@ -253,6 +252,7 @@ let g:vimwiki_conceallevel=2
 let g:vimwiki_autowriteall=0 " Irritating
 let g:vimwiki_folding='custom'
 let g:vimwiki_global_ext=0
+let g:vimwiki_table_mappings=0
 au FileType vimwiki set filetype=markdown.pandoc
 
 " vim-pandoc

@@ -37,5 +37,6 @@
       "command": "shfmt",
       "args": ["-i", "2", "-bn", "-ci", "-sr"]
     }
-  }
+  },
+  "coc.source.emoji.filetypes": ["markdown", "vimwiki", "markdown.pandoc"]
 }
