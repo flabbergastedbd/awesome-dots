@@ -55,6 +55,7 @@ Plug 'nvie/vim-flake8'
 " DVCS : Git, gitgutter for showing the changes beside line numbers
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/gv.vim'
 
 Plug 'majutsushi/tagbar'
 
@@ -270,7 +271,7 @@ let g:pandoc#formatting#textwidth = 120
 
 " Zettel config
 let g:zettel_random_chars=16
-let g:zettel_date_format = "%y-%m-%d"
+let g:zettel_date_format = "%Y-%m-%d"
 let g:zettel_format = "%random"
 let g:zettel_default_mappings = 0
 let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
