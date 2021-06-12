@@ -8,11 +8,11 @@
         "execute",
         "language-server",
         "--check-errors=ON_CHANGE",
-        "--search-path=/home/tunnelshade/workspace/codeql/codeql/:./",
+        "--search-path=.",
         "-q"
       ],
       "filetypes": ["ql"],
-      "rootPatterns": ["qlpack.yml"],
+      "rootPatterns": ["qlpack.yml", ".codeqlmanifest.json"],
       "requireRootPattern": true
     },
     "ccls": {
