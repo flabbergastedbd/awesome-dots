@@ -25,7 +25,7 @@ font pango:Font Awesome 5 Free 10
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -210,12 +210,5 @@ smart_borders no_gaps
 hide_edge_borders smart_no_gaps
 
 # Wallpaper
-#exec --no-startup-id feh --bg-scale --no-xinerama ~/Pictures/wallpaper.jpg
+# exec --no-startup-id feh --bg-scale --no-xinerama ~/Pictures/wallpaper.jpg
 output "*" bg /home/tunnelshade/Pictures/wallpaper.jpg fill
-
-# Monitors
-#exec --no-startup-id bash ~/.screenlayout/default.sh
-output HDMI-1 pos 0 353 res 1920 1080
-output DVI-D-1 pos 1920 0 res 1920 1080
-
-output DVI-D-1 transform 90
