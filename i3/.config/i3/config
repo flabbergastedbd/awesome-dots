@@ -17,7 +17,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 10
+font pango:JetBrains Mono 10
 font pango:Font Awesome 5 Free 10
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -210,6 +210,3 @@ hide_edge_borders smart_no_gaps
 
 # Wallpaper
 exec --no-startup-id feh --bg-scale --no-xinerama ~/Pictures/wallpaper.jpg
-
-# Monitors
-exec --no-startup-id bash ~/.screenlayout/default.sh
