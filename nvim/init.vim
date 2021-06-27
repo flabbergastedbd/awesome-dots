@@ -248,8 +248,8 @@ autocmd FileType markdown nmap <buffer><silent> <leader>zp :call mdip#MarkdownCl
 let g:mdip_imgdir = 'images'
 
 " Vimwiki config
-let g:vimwiki_list = [{'path': '~/workspace/notes/', 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_markdown_link_ext=1
+let g:vimwiki_list = [{'path': '~/workspace/notes/content', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_markdown_link_ext=0 " For Zola relative linking to work
 let g:vimwiki_conceallevel=2
 let g:vimwiki_autowriteall=0 " Irritating
 let g:vimwiki_folding='custom'
