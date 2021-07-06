@@ -47,6 +47,9 @@ alias ll="ls -l"
 # Fuzzy changing
 alias fd="fzf-cd-widget"
 
+# Zoxide
+zoxide init fish | source
+
 # Virtualenv aliases
 function switch_to_virtualenv
 	test -d .venv
