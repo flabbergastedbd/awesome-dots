@@ -13,6 +13,7 @@ common:
 	stow -t ~/.config/peco peco
 	stow -t ~/.config/radare2 radare2
 	stow -t ~/.config/alacritty alacritty
+	stow -t ~/.config/kitty kitty
 
 linux:
 	# stow -t ~/ bspwm

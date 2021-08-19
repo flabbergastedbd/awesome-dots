@@ -66,6 +66,7 @@ Plug 'cespare/vim-toml'
 Plug 'ferrine/md-img-paste.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-markdownfootnotes'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'michal-h21/vim-zettel'
@@ -102,12 +103,9 @@ set hlsearch incsearch ignorecase " highlight search, incremental search and ign
 " double escape for removing search highlights
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
-" Semicolon
-nmap ; :
-
 " Leader
 nnoremap <space> <Nop>
-let mapleader=" "
+let mapleader=";"
 
 " File specific hacks
 autocmd Filetype python set expandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -284,8 +282,10 @@ augroup filetype_vimwiki
   autocmd FileType vimwiki nmap <leader>zs <Plug>ZettelSearchMap
   autocmd FileType vimwiki nmap <leader>zo :ZettelOpen<CR>
   autocmd FileType vimwiki nmap <leader>zb :ZettelBackLinks<CR>
-  autocmd FileType vimwiki nmap <leader>fx <Plug>VimwikiSplitLink
-  autocmd FileType vimwiki nmap <leader>fv <Plug>VimwikiVSplitLink
+  autocmd FileType vimwiki nmap <leader>zfx <Plug>VimwikiSplitLink
+  autocmd FileType vimwiki nmap <leader>zfv <Plug>VimwikiVSplitLink
+  autocmd FileType vimwiki nmap <leader>zf <Plug>AddVimFootnote
+  autocmd FileType vimwiki nmap <leader>zr <Plug>ReturnFromFootnote
 augroup END
 
 " Goyo: Hide tmux pane when switching to write
