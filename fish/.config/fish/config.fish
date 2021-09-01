@@ -7,6 +7,7 @@ set -x LANG en_US.UTF-8
 
 # Disabled to support right font in alacritty
 # set -gx TERM "screen-256color"
+fish_vi_key_bindings
 
 # osx fix
 if test -d "/usr/local/bin"
