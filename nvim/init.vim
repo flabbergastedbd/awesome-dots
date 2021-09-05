@@ -246,7 +246,7 @@ autocmd FileType markdown nmap <buffer><silent> <leader>zp :call mdip#MarkdownCl
 let g:mdip_imgdir = 'images'
 
 " Vimwiki config
-let g:vimwiki_list = [{'path': '~/workspace/notes/content', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/workspace/notes/content', 'syntax': 'markdown', 'ext': '.md'}, {'path': '~/workspace/fluent', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_markdown_link_ext=0 " For Zola relative linking to work
 let g:vimwiki_conceallevel=2
 let g:vimwiki_autowriteall=0 " Irritating
@@ -278,7 +278,8 @@ let g:zettel_options = [{"front_matter" : [["taxonomies", ""]]}]
 augroup filetype_vimwiki
   autocmd!
   autocmd FileType vimwiki imap <silent> [[ [[<esc><Plug>ZettelSearchMap
-  autocmd FileType vimwiki xmap <leader>zn <Plug>ZettelNewSelectedMap
+  autocmd FileType vimwiki xmap <leader>zn <Plug>ZettelNew
+  autocmd FileType vimwiki xmap <leader>zN <Plug>ZettelNewSelectedMap
   autocmd FileType vimwiki nmap <leader>zs <Plug>ZettelSearchMap
   autocmd FileType vimwiki nmap <leader>zo :ZettelOpen<CR>
   autocmd FileType vimwiki nmap <leader>zb :ZettelBackLinks<CR>

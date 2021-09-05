@@ -87,5 +87,11 @@ alias to_jira_codefmt='awk \'BEGIN {printf "{code:theme=Midnight}\n"} { print $0
 if test -e ~/.custom.fish
 	source ~/.custom.fish
 end
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+# Editing alias
+alias n='nvim '
+
+# Git helper
+function cnp
+	git commit -m $argv[1] && git push
+end
