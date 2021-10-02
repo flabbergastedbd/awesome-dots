@@ -89,7 +89,9 @@ if test -e ~/.custom.fish
 end
 
 # Editing alias
-alias n='nvim '
+alias n='nvim'
+alias k='kubectl'
+alias gcd1='git clone --depth 1'
 
 # Git helper
 function cnp

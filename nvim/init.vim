@@ -133,7 +133,7 @@ set directory=/tmp
 
 " codeql
 let g:codeql_max_ram = 16000
-let g:codeql_search_path = ["/Users/bmachira/workspace/linkedin/qlin_trunk"]
+let g:codeql_search_path = ["/Users/bmachira/workspace/codeql/ql"]
 let g:codeql_fmt_onsave = 1
 
 " Splitfu
@@ -177,9 +177,6 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
 
-" Markbar
-map ' :Marks<CR>
-
 " Sudo write
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
@@ -187,10 +184,10 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 let g:rg_command="rg --vimgrep -g !tags -g '!*.{min,zip,swp}' -g '!.git/*' "
 
 " Tagbar
-nmap <F8> :TagbarToggle<CR>
 map <F11> :setlocal spell! spelllang=en_us<CR>
 let tagbar_denylist = ["markdown", "vimwiki", "vimwiki.markdown", "markdown.pandoc"]
-autocmd VimEnter * if stridx(&ft, "markdown") < 0 | TagbarOpen
+" Disable by default, map to shortcut to toggle
+" autocmd VimEnter * if stridx(&ft, "markdown") < 0 | TagbarOpen
 
 " Text justifying
 ru macros/justify.vim
@@ -224,6 +221,8 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>F :Rg<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>o :TagbarToggle<CR>
+map ' :Marks<CR>
 
 " Floaterm
 tnoremap <Esc><Esc> <C-\><C-n>
@@ -258,6 +257,7 @@ au FileType vimwiki set filetype=markdown.pandoc
 " vim-pandoc
 let g:pandoc#folding#fdc=0
 let g:pandoc#folding#fold_yaml=1
+let g:pandoc#folding#fold_fenced_codeclocks = 1
 let g:pandoc#folding#foldlevel_yaml=11 " As per no heading text level and how to fold only yaml frontmatter
 let g:pandoc#folding#level=10
 let g:pandoc#syntax#conceal#urls=1

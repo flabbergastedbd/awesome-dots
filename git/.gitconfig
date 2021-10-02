@@ -4,3 +4,5 @@
 [core]
 	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
+[url "git@github.com:"]
+	insteadOf = https://github.com/
