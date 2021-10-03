@@ -40,14 +40,6 @@ set -gx PYTHONDONTWRITEBYTECODE true
 # Virtualenv disable prompt
 # set -x VIRTUAL_ENV_DISABLE_PROMPT "TRUE"
 
-# Alias
-alias ls="exa"
-alias lt="exa --tree"
-alias ll="ls -l"
-
-# Fuzzy changing
-alias fd="fzf-cd-widget"
-
 # Zoxide
 zoxide init fish | source
 
@@ -59,8 +51,7 @@ function switch_to_virtualenv
 	end
 	source .venv/bin/activate.fish
 end
-alias v="switch_to_virtualenv"
-alias V="deactivate"
+
 
 # Custom watch
 function watch
@@ -88,12 +79,19 @@ if test -e ~/.custom.fish
 	source ~/.custom.fish
 end
 
-# Editing alias
-alias n='nvim'
-alias k='kubectl'
-alias gcd1='git clone --depth 1'
-
 # Git helper
 function cnp
 	git commit -m $argv[1] && git push
 end
+
+# Alias
+alias c='clear'
+alias ls='exa'
+alias lt='exa --tree'
+alias ll='ls -l'
+alias fd='fzf-cd-widget'
+alias v="switch_to_virtualenv"
+alias V="deactivate"
+alias n='nvim'
+alias k='kubectl'
+alias gcd1='git clone --depth 1'
