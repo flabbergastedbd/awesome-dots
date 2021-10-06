@@ -53,15 +53,6 @@ function switch_to_virtualenv
 end
 
 
-# Custom watch
-function watch
-	while true
- 		clear
- 		eval $argv[2..-1]
- 		sleep $argv[1]
- 	end
-end
-
 function generate_image
 	if test (count $argv) -lt 3
 		echo "Usage: <command> widthxheigth fffffff filename"
@@ -95,3 +86,17 @@ alias V="deactivate"
 alias n='nvim'
 alias k='kubectl'
 alias gcd1='git clone --depth 1'
+
+# Java
+if type -q jenv
+	status --is-interactive; and source (jenv init - | psub)
+	function __jenv_export_hook --on-event fish_prompt
+	    set -gx JAVA_HOME (jenv javahome)
+	    set -gx JENV_FORCEJAVAHOME true
+
+	    if test -e "$JAVA_HOME/bin/javac"
+		set -gx JDK_HOME "$JAVA_HOME"
+		set -gx JENV_FORCEJDKHOME true
+	    end
+	end
+end
