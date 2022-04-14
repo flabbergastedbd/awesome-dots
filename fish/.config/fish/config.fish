@@ -29,7 +29,7 @@ if test -n (echo $SSH_AUTH_SOCK | tr -d " \r\n")
 end
 
 # Golang settings
-set -x GOPATH $HOME/workspace/golang
+set -gx GOPATH $HOME/workspace/go
 set -gx PATH $PATH $GOPATH/bin
 set -gx PATH $PATH $HOME/.cargo/bin
 
@@ -80,12 +80,13 @@ alias c='clear'
 alias ls='exa'
 alias lt='exa --tree'
 alias ll='ls -l'
-alias fd='fzf-cd-widget'
 alias v="switch_to_virtualenv"
 alias V="deactivate"
 alias n='nvim'
 alias k='kubectl'
 alias gcd1='git clone --depth 1'
+alias sed='sd'
+alias man='tldr'
 
 # Java
 if type -q jenv
