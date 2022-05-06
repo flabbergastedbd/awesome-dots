@@ -24,9 +24,9 @@ if test -d "/usr/local/opt/ruby/bin"
 end
 
 # linux fix
-if test -n (echo $SSH_AUTH_SOCK | tr -d " \r\n")
-	set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-end
+# if test -n (echo $SSH_AUTH_SOCK | tr -d " \r\n")
+# 	set -gx SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+# end
 
 # Golang settings
 set -gx GOPATH $HOME/workspace/go
@@ -85,7 +85,7 @@ alias V="deactivate"
 alias n='nvim'
 alias k='kubectl'
 alias gcd1='git clone --depth 1'
-alias sed='sd'
+alias g='lazygit'
 alias man='tldr'
 
 # Java
