@@ -86,7 +86,6 @@ alias n='nvim'
 alias k='kubectl'
 alias gcd1='git clone --depth 1'
 alias g='lazygit'
-alias man='tldr'
 
 # Java
 if type -q jenv
