@@ -84,6 +84,9 @@ alias v="switch_to_virtualenv"
 alias V="deactivate"
 alias n='nvim'
 alias k='kubectl'
+alias kn='kubectl -n $K8S_NAMESPACE'
+alias kc='kubectl --context $K8S_CONTEXT'
+alias kcn='kubectl --context $K8S_CONTEXT -n $K8S_NAMESPACE'
 alias gcd1='git clone --depth 1'
 alias g='lazygit'
 
@@ -100,3 +103,4 @@ if type -q jenv
 	    end
 	end
 end
+
