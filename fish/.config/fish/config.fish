@@ -14,6 +14,11 @@ if test -d "/usr/local/bin"
 	set -gx PATH "/usr/local/bin" $PATH
 end
 
+# osx m* fix
+if test -d "/opt/homebrew/bin"
+	set -gx PATH "/opt/homebrew/bin" $PATH
+end
+
 # osx fix
 if test -d "/usr/local/opt/coreutils/libexec/gnubin"
 	set -gx PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
@@ -104,3 +109,5 @@ if type -q jenv
 	end
 end
 
+# Enable FZF autocomplete
+fzf --fish | source
