@@ -82,9 +82,6 @@ end
 
 # Alias
 alias c='clear'
-alias ls='exa'
-alias lt='exa --tree'
-alias ll='ls -l'
 alias v="switch_to_virtualenv"
 alias V="deactivate"
 alias n='nvim'
@@ -111,3 +108,5 @@ end
 
 # Enable FZF autocomplete
 fzf --fish | source
+
+alias md2html="pandoc -f markdown --standalone --highlight-style pygments --css min-width=80%"
