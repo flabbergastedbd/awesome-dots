@@ -212,3 +212,8 @@ hide_edge_borders smart_no_gaps
 # Wallpaper
 # exec --no-startup-id feh --bg-scale --no-xinerama ~/Pictures/wallpaper.jpg
 output "*" bg /home/tunnelshade/Pictures/wallpaper.jpg fill
+
+# Natural Scroll
+input "type:pointer" {
+  natural_scroll enabled
+}

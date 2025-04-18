@@ -3,12 +3,11 @@
 	name = tunnelshade
 [core]
 	editor = nvim
-	pager = diff-so-fancy | less --tabs=4 -RFX
 	fsmonitor = false
 	untrackedCache = true
 	hooksPath = /usr/local/gitconfig/hooks/
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+# [url "git@github.com:"]
+# 	insteadOf = https://github.com
 [push]
 	default = current
 [pull]
