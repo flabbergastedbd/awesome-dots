@@ -7,7 +7,9 @@ set -x LANG en_US.UTF-8
 
 # Disabled to support right font in alacritty
 # set -gx TERM "screen-256color"
-fish_vi_key_bindings
+if not set -q CURSOR_TRACE_ID
+	fish_vi_key_bindings
+end
 
 # osx fix
 if test -d "/usr/local/bin"
@@ -82,6 +84,9 @@ end
 
 # Alias
 alias c='clear'
+alias ls='eza'
+alias lt='eza --tree'
+alias ll='ls -l'
 alias v="switch_to_virtualenv"
 alias V="deactivate"
 alias n='nvim'
@@ -91,6 +96,12 @@ alias kc='kubectl --context $K8S_CONTEXT'
 alias kcn='kubectl --context $K8S_CONTEXT -n $K8S_NAMESPACE'
 alias gcd1='git clone --depth 1'
 alias g='lazygit'
+alias ctx='kubectx'
+alias ns='kubens'
+
+function gcb
+	git checkout -b bmachiraju/$argv[1]
+end
 
 # Java
 if type -q jenv
@@ -106,7 +117,21 @@ if type -q jenv
 	end
 end
 
+# Python
+pyenv init - | source
+
 # Enable FZF autocomplete
-fzf --fish | source
+# fzf --fish | source
 
 alias md2html="pandoc -f markdown --standalone --highlight-style pygments --css min-width=80%"
+# Rust
+source "$HOME/.cargo/env.fish"
+
+alias assume="source (brew --prefix)/bin/assume.fish"
+alias logseq_to_md='sd "^-\s+" ""'
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/bmachiraju/.cache/lm-studio/bin
+
+# Created by `pipx` on 2025-02-06 06:25:12
+set PATH $PATH /Users/bmachiraju/.local/bin
