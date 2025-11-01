@@ -8,10 +8,9 @@ common:
 	stow -t ~/ tmux
 	stow -t ~/ sync
 	stow -t ~/ python
-	stow -t ~/ neomutt
 	stow -t ~/ gdb
 	stow -t ~/.config/alacritty alacritty
-	stow -t ~/.config/kitty kitty
+	stow -t ~/.config/ghostty ghostty
 
 linux:
 	# stow -t ~/ bspwm
