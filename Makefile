@@ -11,6 +11,7 @@ common:
 	stow -t ~/ gdb
 	stow -t ~/.config/alacritty alacritty
 	stow -t ~/.config/ghostty ghostty
+	stow -t ~/.config/helix helix
 
 linux:
 	# stow -t ~/ bspwm

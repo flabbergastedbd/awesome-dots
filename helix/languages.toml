@@ -1,0 +1,28 @@
+[[language]]
+name = "python"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "html"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "yaml"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "javascript"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "typescript"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "markdown"
+indent = { tab-width = 2, unit = "  " }
+comment-tokens = ["-", "+", "*", "- [ ]", ">"]
+
+[[language]]
+name = "xml"
+indent = { tab-width = 2, unit = "  " }

@@ -1,0 +1,46 @@
+theme = "nord"
+
+[editor]
+line-number = "relative"
+cursorline = true
+color-modes = true
+bufferline = "always"
+true-color = true
+scrolloff = 5
+mouse = true
+shell = ["fish", "-c"]
+gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.soft-wrap]
+enable = false
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = ["diagnostics"]
+right = ["selections", "position", "file-encoding", "file-type"]
+
+[keys.normal]
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+C-h = "jump_view_left"
+C-l = "jump_view_right"
+"^" = "goto_first_nonwhitespace"
+"$" = "goto_line_end"
+
+[keys.normal.";"]
+w = ":write"
+q = ":quit"
+r = ":config-reload"
