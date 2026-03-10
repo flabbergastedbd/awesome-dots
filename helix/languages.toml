@@ -26,3 +26,10 @@ comment-tokens = ["-", "+", "*", "- [ ]", ">"]
 [[language]]
 name = "xml"
 indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "rust"
+
+[[language]]
+name = "toml"
+file-types = ["toml", "toml.in"]

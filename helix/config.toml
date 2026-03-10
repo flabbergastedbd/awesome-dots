@@ -1,4 +1,4 @@
-theme = "nord"
+theme = "zed_onedark"
 
 [editor]
 line-number = "relative"
