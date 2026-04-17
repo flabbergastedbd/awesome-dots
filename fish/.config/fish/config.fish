@@ -8,26 +8,26 @@ set -x LANG en_US.UTF-8
 # Disabled to support right font in alacritty
 # set -gx TERM "screen-256color"
 if not set -q CURSOR_TRACE_ID
-	fish_vi_key_bindings
+    fish_vi_key_bindings
 end
 
 # osx fix
-if test -d "/usr/local/bin"
-	set -gx PATH "/usr/local/bin" $PATH
+if test -d /usr/local/bin
+    set -gx PATH /usr/local/bin $PATH
 end
 
 # osx m* fix
-if test -d "/opt/homebrew/bin"
-	set -gx PATH "/opt/homebrew/bin" $PATH
+if test -d /opt/homebrew/bin
+    set -gx PATH /opt/homebrew/bin $PATH
 end
 
 # osx fix
-if test -d "/usr/local/opt/coreutils/libexec/gnubin"
-	set -gx PATH "/usr/local/opt/coreutils/libexec/gnubin" $PATH
+if test -d /usr/local/opt/coreutils/libexec/gnubin
+    set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 end
 
-if test -d "/usr/local/opt/ruby/bin"
-	set -g fish_user_paths "/usr/local/opt/ruby/bin" $fish_user_paths
+if test -d /usr/local/opt/ruby/bin
+    set -g fish_user_paths /usr/local/opt/ruby/bin $fish_user_paths
 end
 
 # linux fix
@@ -47,25 +47,39 @@ set -gx PYTHONDONTWRITEBYTECODE true
 # Virtualenv disable prompt
 # set -x VIRTUAL_ENV_DISABLE_PROMPT "TRUE"
 
+# Cache helper: caches init output, invalidates when binary is newer than cache
+# Uses fish builtin -nt (newer than) to avoid stat/cat subprocesses
+function __source_cached --argument-names tool_name init_cmd
+    set -l cache_dir ~/.cache/fish_init
+    test -d $cache_dir; or mkdir -p $cache_dir
+    set -l cache_file $cache_dir/$tool_name.fish
+    set -l bin_path (command -s $tool_name)
+    if test -n "$bin_path"
+        if not test -f $cache_file; or test $bin_path -nt $cache_file
+            eval $init_cmd > $cache_file
+        end
+        source $cache_file
+    end
+end
+
 # Zoxide
-zoxide init fish | source
+__source_cached zoxide 'zoxide init fish'
 
 # Virtualenv aliases
 function switch_to_virtualenv
-	test -d .venv
-	if test $status -ne 0
-		python -m venv .venv
-	end
-	source .venv/bin/activate.fish
+    test -d .venv
+    if test $status -ne 0
+        python -m venv .venv
+    end
+    source .venv/bin/activate.fish
 end
 
-
 function generate_image
-	if test (count $argv) -lt 3
-		echo "Usage: <command> widthxheigth fffffff filename"
-	else
-		convert -size $argv[1] xc:#$argv[2] $argv[3]
-	end
+    if test (count $argv) -lt 3
+        echo "Usage: <command> widthxheigth fffffff filename"
+    else
+        convert -size $argv[1] xc:#$argv[2] $argv[3]
+    end
 end
 
 # Processing helpers
@@ -74,12 +88,12 @@ alias to_int_json_array='awk \'BEGIN {printf "["} {printf t $0} {t=", "} END {pr
 alias to_jira_codefmt='awk \'BEGIN {printf "{code:theme=Midnight}\n"} { print $0 } END {printf "{code}\n"}\''
 
 if test -e ~/.custom.fish
-	source ~/.custom.fish
+    source ~/.custom.fish
 end
 
 # Git helper
 function cnp
-	git commit -m $argv[1] && git push
+    git commit -m $argv[1] && git push
 end
 
 # Alias
@@ -100,34 +114,22 @@ alias ctx='kubectx'
 alias ns='kubens'
 
 function gcb
-	git checkout -b bmachiraju/$argv[1]
+    git checkout -b bmachiraju/$argv[1]
 end
 
-# Java
-if type -q jenv
-	status --is-interactive; and source (jenv init - | psub)
-	function __jenv_export_hook --on-event fish_prompt
-	    set -gx JAVA_HOME (jenv javahome)
-	    set -gx JENV_FORCEJAVAHOME true
-
-	    if test -e "$JAVA_HOME/bin/javac"
-		set -gx JDK_HOME "$JAVA_HOME"
-		set -gx JENV_FORCEJDKHOME true
-	    end
-	end
-end
-
-# Python
-pyenv init - | source
+# asdf version manager (replaces pyenv + jenv)
+set -gx PATH $HOME/.asdf/shims $PATH
+set -gx JAVA_HOME $HOME/.asdf/installs/java/temurin-21.0.10+7.0.LTS
+set -gx JDK_HOME "$JAVA_HOME"
 
 # Enable FZF autocomplete
-# fzf --fish | source
+__source_cached fzf 'fzf --fish'
 
 alias md2html="pandoc -f markdown --standalone --highlight-style pygments --css min-width=80%"
 # Rust
 source "$HOME/.cargo/env.fish"
 
-alias assume="source (brew --prefix)/bin/assume.fish"
+alias assume="source /opt/homebrew/bin/assume.fish"
 alias logseq_to_md='sd "^-\s+" ""'
 
 # Added by LM Studio CLI (lms)

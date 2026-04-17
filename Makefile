@@ -9,9 +9,10 @@ common:
 	stow -t ~/ sync
 	stow -t ~/ python
 	stow -t ~/ gdb
-	stow -t ~/.config/alacritty alacritty
+	# stow -t ~/.config/alacritty alacritty
 	stow -t ~/.config/ghostty ghostty
 	stow -t ~/.config/helix helix
+	stow -t ~/.config/zellij zellij
 
 linux:
 	# stow -t ~/ bspwm

@@ -4,6 +4,7 @@ initial-window = false
 shell-integration = fish
 clipboard-write = allow
 copy-on-select = true
+macos-option-as-alt = true
 
 font-family = Zed Plex Mono
 font-size = 17
