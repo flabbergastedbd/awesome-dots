@@ -6,7 +6,7 @@ set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 
 # Disabled to support right font in alacritty
-# set -gx TERM "screen-256color"
+set -gx TERM xterm-256color
 if not set -q CURSOR_TRACE_ID
     fish_vi_key_bindings
 end
@@ -56,7 +56,7 @@ function __source_cached --argument-names tool_name init_cmd
     set -l bin_path (command -s $tool_name)
     if test -n "$bin_path"
         if not test -f $cache_file; or test $bin_path -nt $cache_file
-            eval $init_cmd > $cache_file
+            eval $init_cmd >$cache_file
         end
         source $cache_file
     end
@@ -137,3 +137,26 @@ set -gx PATH $PATH /Users/bmachiraju/.cache/lm-studio/bin
 
 # Created by `pipx` on 2025-02-06 06:25:12
 set PATH $PATH /Users/bmachiraju/.local/bin
+
+alias assume="source (brew --prefix)/bin/assume.fish"
+
+function aws-sts-assumerole
+    set -l res (aws sts assume-role $argv 2>&1)
+    if test $status -ne 0
+        echo "aws sts assume-role failed: $res"
+        return 1
+    end
+    set -gx AWS_ACCESS_KEY_ID (echo $res | jq -r '.Credentials.AccessKeyId')
+    set -gx AWS_SECRET_ACCESS_KEY (echo $res | jq -r '.Credentials.SecretAccessKey')
+    set -gx AWS_SESSION_TOKEN (echo $res | jq -r '.Credentials.SessionToken')
+    echo "Assumed role: "(echo $res | jq -r '.AssumedRoleUser.Arn')
+end
+
+# >>> coursier install directory >>>
+set -gx PATH "$PATH:/Users/bmachiraju/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/bmachiraju/.lmstudio/bin
+# End of LM Studio CLI section
+

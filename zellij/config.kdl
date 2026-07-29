@@ -163,6 +163,13 @@ keybinds clear-defaults=true {
         bind "Alt 7" { GoToTab 7; }
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
+        bind "Alt h" { MoveFocus "left"; }
+        bind "Alt j" { MoveFocus "down"; }
+        bind "Alt k" { MoveFocus "up"; }
+        bind "Alt l" { MoveFocus "right"; }
+        bind "Alt -" { NewPane "down"; }
+        bind "Alt \\" { NewPane "right"; }
+        bind "Alt x" { CloseFocus; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }
@@ -295,7 +302,7 @@ default_mode "locked"
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 // 
-// default_shell "fish"
+default_shell "fish"
  
 // Choose the path to override cwd that zellij will use for opening new panes
 // 
